@@ -1,0 +1,4 @@
+# 忽略所有文件夹下 build 目录及其子文件
+build
+dist
+nbproject
