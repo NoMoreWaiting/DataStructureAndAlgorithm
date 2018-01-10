@@ -1,6 +1,7 @@
 # 忽略所有文件夹下 build 目录及其子文件
 build
 dist
-nbproject
+# 删除之后需要手动写Makefile, 暂不删除
+# nbproject
 
 .dep.inc
