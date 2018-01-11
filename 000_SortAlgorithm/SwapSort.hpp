@@ -178,26 +178,48 @@ void BubbleSort4(int a[], int n) {
 
 // 快速排序 单向划分 <<编程珠玑第2版>> 第112页的实现方法, 以最左侧作为枢纽元
 
-void QuickSort(int a[], int left, int right) {
+void QuickSort1Left(int a[], int left, int right) {
     if (left >= right) {
         return;
     }
 
-    int pivote = left;
+    int pivot = left;
     int low = left;
 
     for (int high = left + 1; high <= right; high++) {
-        if (a[high] < a[pivote]) {
+        if (a[high] < a[pivot]) {
             low++; // 注意: 这里的low需要先计算++, 然后再交换值. 因为最左边是枢纽元, 先++之后才能交换
             Swap(a[high], a[low]);
-            ShowArr(a, right+1);
+            //            ShowArr(a, right+1);
         }
-//        ShowArr(a, right+1);
+        //        ShowArr(a, right+1);
     }
-    Swap(a[pivote], a[low]);
-    ShowArr(a, right+1);
-    QuickSort(a, pivote, low - 1); // 递归调用左侧
-    QuickSort(a, low+1, right); // 递归调用右侧
+    Swap(a[pivot], a[low]);
+    //    ShowArr(a, right+1);
+    QuickSort1Left(a, pivot, low - 1); // 递归调用左侧
+    QuickSort1Left(a, low + 1, right); // 递归调用右侧
+}
+
+
+// 快速排序 单向划分 算法导论上的方法 以最右侧作为枢纽元
+void QuickSort1Right(int a[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    // low总是指向小于a[pivot]值区间的最右端
+    // 因此一开始的left如果为0, 那么low是-1, 因为还没有排序, 没有小于区间的最右值
+    int low = left - 1; // low, high, pivot, left, right 都是数组的下标. 数组下标从0开始
+    int pivot = right;
+
+    for (int high = left; high < right; high++) {
+        if (a[high] < a[pivot]) { // 交换包括自己交换, 这样才能移动low(low总是指向小于a[pivot]值区间的最右端)
+            low++; // low++后low指向了数组第一个大于枢纽的位置
+            Swap(a[high], a[low]);
+        }
+    }
+    Swap(a[pivot], a[low+1]);
+    QuickSort1Right(a, left, low - 1);
+    QuickSort1Right(a, low + 1, right);
 }
 
 void TestBubbleSort() {
@@ -260,19 +282,30 @@ void TestBubbleSort4() {
     ShowArr(arr, len);
 }
 
-void TestQuickSort() {
+void TestQuickSort1Left() {
     int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
     int len = sizeof (arr) / sizeof (int);
     cout << "排序前: ";
     ShowArr(arr, len);
 
-    QuickSort(arr, 0, len - 1);
+    QuickSort1Left(arr, 0, len - 1);
 
     cout << "排序后: ";
     ShowArr(arr, len);
 }
 
+void TestQuickSort1Right() {
+//    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int arr[] = {9, 6, 12, 3, 10};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
 
+    QuickSort1Right(arr, 0, len - 1);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+}
 
 
 
