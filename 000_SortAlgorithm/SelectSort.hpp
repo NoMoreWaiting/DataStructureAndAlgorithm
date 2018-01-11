@@ -57,12 +57,13 @@ void TestSelectSort() {
     return;
 }
 
-// 双向选择排序
+// 二元选择排序
 
 void BinarySelectSort(int arr[], int len) {
 
     for (int i = 0; i < len / 2; i++) {
         for (int j = i + 1; j <= len - i - 1; j++) {
+            // 博客原文先记录标志位然后使用特殊位置判断来交换元素. 这里直接先做两次交换, 后面在做一次保险判断
             int min = i, max = len -i -1; // 假定首位最小, 尾部最大.
             if (arr[j] < arr[min]) { // 过滤首部最小, 立即交换
                 int temp = arr[min];

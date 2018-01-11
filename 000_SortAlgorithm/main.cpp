@@ -9,12 +9,14 @@
  * Author:      xuwei.huang
  * Describe:    
  * Created on   2018年1月10日, 上午9:55
+ * 
+ * 参考: http://blog.csdn.net/zhangjikuan/article/details/49095533
+ * 
  */
 
 #include <iostream>
 
 #include "InsertSort.hpp"
-#include "ShellSort.hpp"
 #include "SelectSort.hpp"
 
 

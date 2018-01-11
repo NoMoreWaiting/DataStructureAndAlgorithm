@@ -5,7 +5,6 @@
       <itemPath>Common.h</itemPath>
       <itemPath>InsertSort.hpp</itemPath>
       <itemPath>SelectSort.hpp</itemPath>
-      <itemPath>ShellSort.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="源文件" projectFiles="true">
       <itemPath>main.cpp</itemPath>
@@ -40,8 +39,6 @@
       </item>
       <item path="SelectSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ShellSort.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -70,8 +67,6 @@
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SelectSort.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ShellSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
