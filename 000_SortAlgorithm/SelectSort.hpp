@@ -45,18 +45,7 @@ void SelectSort(int arr[], int len) {
     }
 }
 
-void TestSelectSort() {
-    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
-    int len = sizeof (arr) / sizeof (int);
-    cout << "排序前: ";
-    ShowArr(arr, len);
 
-    SelectSort(arr, len);
-
-    cout << "排序后: ";
-    ShowArr(arr, len);
-    return;
-}
 
 /*
  * 二元选择排序, 是对直接选择排序的改进
@@ -65,7 +54,6 @@ void TestSelectSort() {
  * 减小比较次数. 交换次数并没有减少多次
  * 
  */
-
 
 
 // 二元选择排序
@@ -98,28 +86,26 @@ void BinarySelectSort(int arr[], int len) {
     }
 }
 
-void TestBinarySelectSort() {
-    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
-    int len = sizeof (arr) / sizeof (int);
-    cout << "排序前: ";
-    ShowArr(arr, len);
 
-    BinarySelectSort(arr, len);
-
-    cout << "排序后: ";
-    ShowArr(arr, len);
-    return;
-}
 
 
 
 /*
+ * 选择排序 -- 堆排序
  * 
+ * 平均时间复杂度: O(n * log n)
+ * 最好情况: O(n * log n)
+ * 最坏情况: O(n * log n)
+ * 空间复杂度: O(1)
+ * 排序方式: in-place
+ * 稳定性: 不稳定
+ * 
+ * 基本思想:
+ * 
+ * 注意要点:
  * 
  * 
  */
-
-// 选择排序 -- 堆排序
 
 // 数组是从0开始的, 所以选择0编号开头
 // 堆编号的选择: 
@@ -187,6 +173,8 @@ void HeapSort(int a[], int n) {
     }
 }
 
+// 大根堆
+
 void bigHeapAdjust(int a[], int start, int end) {
     int rc = a[start];
     for (int l = 2 * start + 1; l <= end; l = 2 * l + 1) {
@@ -223,6 +211,32 @@ void BigHeapSort(int a[], int n) {
         Swap(a[0], a[i]);
         bigHeapAdjust(a, 0, i - 1); // i-1, 调整剩下的元素. 少一个
     }
+}
+
+void TestSelectSort() {
+    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    SelectSort(arr, len);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+    return;
+}
+
+void TestBinarySelectSort() {
+    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    BinarySelectSort(arr, len);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+    return;
 }
 
 void TestHeapSort() {

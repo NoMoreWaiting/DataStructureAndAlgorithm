@@ -44,22 +44,11 @@ void InsertSort(int arr[], int len) {
             }
             arr[j + 1] = temp; // 将保存的元素插入到正确的位置
         }
-        ShowArr(arr, len);
+        //        ShowArr(arr, len);
     }
 }
 
-void TestInsertSort() {
-    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
-    int len = sizeof (arr) / sizeof (int);
-    cout << "排序前: ";
-    ShowArr(arr, len);
 
-    InsertSort(arr, len);
-
-    cout << "排序后: ";
-    ShowArr(arr, len);
-    return;
-}
 
 /*
  * 插入排序—折半插入排序(二分插入)
@@ -89,22 +78,10 @@ void BInsertSort(int arr[], int len) {
             arr[j + 1] = temp; // 插入到正确位置
 
         }
-        ShowArr(arr, len);
+        //        ShowArr(arr, len);
     }
 }
 
-void TestBInsertSort() {
-    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
-    int len = sizeof (arr) / sizeof (int);
-    cout << "排序前: ";
-    ShowArr(arr, len);
-
-    BInsertSort(arr, len);
-
-    cout << "排序后: ";
-    ShowArr(arr, len);
-    return;
-}
 
 
 /*
@@ -164,7 +141,7 @@ void DoubleInsertSort(int arr[], int len) {
             final = (final + 1 + len) % len;
         }
 
-        ShowArr(temp, len);
+        //        ShowArr(temp, len);
     }
 
     // 复制数组
@@ -177,18 +154,6 @@ void DoubleInsertSort(int arr[], int len) {
     return;
 }
 
-void TestDoubleInsertSort() {
-    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
-    int len = sizeof (arr) / sizeof (int);
-    cout << "排序前: ";
-    ShowArr(arr, len);
-
-    DoubleInsertSort(arr, len);
-
-    cout << "排序后: ";
-    ShowArr(arr, len);
-    return;
-}
 
 
 /*
@@ -222,8 +187,47 @@ void ShellSort(int arr[], int len) {
             arr[j] = temp; // 插入到本分隔序列中的应当位置
         }
 
-        ShowArr(arr, len);
+        //        ShowArr(arr, len);
     }
+}
+
+void TestInsertSort() {
+    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    InsertSort(arr, len);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+    return;
+}
+
+void TestBInsertSort() {
+    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    BInsertSort(arr, len);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+    return;
+}
+
+void TestDoubleInsertSort() {
+    int arr[10] = {12, 3, 66, 999, 35, 77, 112, 465, 908, 232};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    DoubleInsertSort(arr, len);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+    return;
 }
 
 void TestShellSort() {
