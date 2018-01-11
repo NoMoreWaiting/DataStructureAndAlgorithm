@@ -18,14 +18,21 @@
 using std::cout;
 using std::endl;
 
-void ShowArr(int arr[], int len) {
+void ShowArr(const int arr[], int len) {
     for (int i = 0; i < len; i++) {
         if (0 != i) {
-            cout << " ";
+            cout << ", ";
         }
         cout << arr[i];
     }
     cout << endl;
+}
+
+
+void Swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 

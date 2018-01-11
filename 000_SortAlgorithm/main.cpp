@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
     TestShellSort();
     TestSelectSort();
     TestBinarySelectSort();
+//    TestHeapSort();
+    TestBigHeapSort();
     
     return 0;
 }
