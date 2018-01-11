@@ -41,7 +41,7 @@ void SelectSort(int arr[], int len) {
             arr[i] = arr[i] - arr[k];
         }
 
-        ShowArr(arr, len);
+//        ShowArr(arr, len);
     }
 }
 
@@ -82,7 +82,7 @@ void BinarySelectSort(int arr[], int len) {
             }
         }
 
-        ShowArr(arr, len);
+//        ShowArr(arr, len);
     }
 }
 
@@ -143,11 +143,11 @@ void heapAdjust(int a[], int start, int end) { // 这里将堆的第一个元素
             //            a[start] = temp;
         }
 
-        ShowArr(a, end);
+//        ShowArr(a, end);
     }
     // 方法一:
     a[start] = rc; // 此时start已经变为 要调整值 应该存放的位置了
-    ShowArr(a, end);
+//    ShowArr(a, end);
 }
 
 
@@ -189,7 +189,7 @@ void bigHeapAdjust(int a[], int start, int end) {
             start = l;
             a[start] = temp;
         }
-        ShowArr(a, end);
+//        ShowArr(a, end);
     }
 
 

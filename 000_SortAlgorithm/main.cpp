@@ -18,6 +18,7 @@
 
 #include "InsertSort.hpp"
 #include "SelectSort.hpp"
+#include "SwapSort.hpp"
 
 
 using namespace std;
@@ -36,8 +37,14 @@ int main(int argc, char** argv) {
     TestShellSort();
     TestSelectSort();
     TestBinarySelectSort();
-//    TestHeapSort();
+    TestHeapSort();
     TestBigHeapSort();
+    TestBubbleSort();
+    TestBubbleSort1();    
+    TestBubbleSort2();
+    TestBubbleSort3();
+    TestBubbleSort4();
+
     
     return 0;
 }
