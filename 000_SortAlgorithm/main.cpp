@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
     TestBubbleSort2();
     TestBubbleSort3();
     TestBubbleSort4();
+    TestQuickSort();
 
     
     return 0;

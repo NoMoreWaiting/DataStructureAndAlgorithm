@@ -23,12 +23,12 @@ using std::endl;
 /*
  * 交换排序 -- 冒泡排序
  * 
- * 平均时间复杂度:
- * 最好情况:
- * 最坏情况:
- * 空间复杂度:
- * 排序方式:
- * 稳定性:
+ * 平均时间复杂度: O(n^2)
+ * 最好情况: O(n)
+ * 最坏情况: O(n^2)
+ * 空间复杂度: O(1)
+ * 排序方式: in-place
+ * 稳定性: 稳定
  * 
  * 基本思想:
  * 
@@ -89,8 +89,6 @@ void BubbleSort2(int a[], int n) {
         flag = pos; // 记录上一轮循环中的最后交换位置
         //        ShowArr(a, n);
     }
-
-
 }
 
 
@@ -160,6 +158,48 @@ void BubbleSort4(int a[], int n) {
 
 
 
+/*
+ * 交换排序 -- 快速排序
+ * 
+ * 平均时间复杂度: O(n * log n)
+ * 最好情况: O(n * log n)
+ * 最坏情况: O(n^2)
+ * 空间复杂度: O(log n)
+ * 排序方式: in-place
+ * 稳定性: 不稳定
+ * 
+ * 基本思想:
+ * 
+ * 注意要点:
+ * 
+ * 改进1: 
+ *
+ */
+
+// 快速排序 单向划分 <<编程珠玑第2版>> 第112页的实现方法, 以最左侧作为枢纽元
+
+void QuickSort(int a[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+
+    int pivote = left;
+    int low = left;
+
+    for (int high = left + 1; high <= right; high++) {
+        if (a[high] < a[pivote]) {
+            low++; // 注意: 这里的low需要先计算++, 然后再交换值. 因为最左边是枢纽元, 先++之后才能交换
+            Swap(a[high], a[low]);
+            ShowArr(a, right+1);
+        }
+//        ShowArr(a, right+1);
+    }
+    Swap(a[pivote], a[low]);
+    ShowArr(a, right+1);
+    QuickSort(a, pivote, low - 1); // 递归调用左侧
+    QuickSort(a, low+1, right); // 递归调用右侧
+}
+
 void TestBubbleSort() {
     int arr[10] = {3, 999, 66, 232, 35, 77, 112, 465, 908, 12};
     int len = sizeof (arr) / sizeof (int);
@@ -220,6 +260,17 @@ void TestBubbleSort4() {
     ShowArr(arr, len);
 }
 
+void TestQuickSort() {
+    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    QuickSort(arr, 0, len - 1);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+}
 
 
 
