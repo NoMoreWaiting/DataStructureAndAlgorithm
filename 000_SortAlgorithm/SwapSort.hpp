@@ -16,6 +16,7 @@
 
 #include "Common.h"
 
+#include <stdlib.h>
 #include <vector>
 #include <stack>
 #include <iostream>
@@ -145,7 +146,7 @@ void BubbleSort4(int a[], int n) {
             }
 
         }
-//        ShowArr(a, n);
+        //        ShowArr(a, n);
         high = pos1;
         if (flag) {
             return;
@@ -158,7 +159,7 @@ void BubbleSort4(int a[], int n) {
                 flag = false;
             }
         }
-//        ShowArr(a, n);
+        //        ShowArr(a, n);
         low = pos1;
         if (flag) {
             return;
@@ -234,11 +235,11 @@ void QuickSort1Right(int a[], int left, int right) {
             low++; // low++后low指向了数组第一个大于枢纽的位置
             Swap(a[high], a[low]);
         }
-//        ShowArr(a, right + 1);
+        //        ShowArr(a, right + 1);
     }
     // 这里以右侧元素作为枢纽元, 那么low指向最后一个小于枢纽元的元素, low+1 指向序列中第一个大于枢纽元的大数. 互换之后, 从 low+2 到right 是大值区间, left 到 low 是小值区间.
     Swap(a[pivot], a[low + 1]);
-//    ShowArr(a, right + 1);
+    //    ShowArr(a, right + 1);
     QuickSort1Right(a, left, low);
     QuickSort1Right(a, low + 2, right);
 }
@@ -273,7 +274,7 @@ void QuickSort2HoareLeft(int a[], int left, int right) {
         // 为什么这里需要<=, 而前面的以左元素为枢纽元是 < 的条件?
         if (low < high) {
             Swap(a[low], a[high]);
-//            ShowArr(a, right + 1);
+            //            ShowArr(a, right + 1);
         }
         else { // 当找不到左右侧可交换的大小值时, low >= high 退出循环
             break;
@@ -301,7 +302,7 @@ int PartionQuickSort2HoareRight(int a[], int left, int right) {
         }
         if (low <= high) {
             Swap(a[low], a[high]);
-//            ShowArr(a, right + 1);
+            //            ShowArr(a, right + 1);
         }
         else {
             break;
@@ -333,7 +334,7 @@ void QuickSort2HoareRight(int a[], int left, int right) {
         // 为什么这里需要<=, 而前面的以左元素为枢纽元是 < 的条件?
         if (low <= high) {
             Swap(a[low], a[high]);
-//            ShowArr(a, right + 1);
+            //            ShowArr(a, right + 1);
         }
         else {
             break;
@@ -475,6 +476,51 @@ void QuickSort3HoleNoRecursion(vector<T>&vec, int left, int right) {
     }
     //    cout << "max stack size: " << maxSize << endl;
     return;
+}
+
+
+
+// 随机枢纽的快速排序
+// 首先产生随机的枢纽位置i，然后交换i、right或者交换i、left。那么接下来就可以继续使用上述的方法
+
+int Rand(int left, int right) {
+    int size = right - left + 1;
+    return left + rand() % size;
+}
+
+
+
+// 使用 hole 法, 右侧枢纽
+
+template <typename T>
+int PartionQuickSort4(vector<T> &vec, int left, int right) {
+    Swap(vec[Rand(left, right)], vec[right]); // 将随机枢纽交换到右侧位置
+    T pivot = vec[right]; //设置枢纽  
+    int low = left;
+    int high = right;
+    while (low < high) {//注意两个内层while的顺序不能换  
+        while (low < high && vec[low] <= pivot)
+            low++;
+        vec[high] = vec[low];
+        while (low < high && vec[high] >= pivot)
+            high--;
+        vec[low] = vec[high];
+    }
+    vec[low] = pivot;
+    return low;
+}
+
+
+
+// 随机枢纽的快速排序
+
+template<typename T>
+void QuickSort4Rand(vector<T> &vec, int left, int right) {
+    if (left < right) {
+        int partion = PartionQuickSort4(vec, left, right);
+        QuickSort4Rand(vec, left, partion - 1);
+        QuickSort4Rand(vec, partion + 1, right);
+    }
 }
 
 void TestBubbleSort() {
@@ -630,6 +676,25 @@ void TestQuickSort3HoleNoRecursion() {
     QuickSort3HoleNoRecursion(vec, 0, vec.size() - 1);
 
     cout << "空洞法无递归版本 排序后: ";
+    ShowVector(vec);
+}
+
+void TestQuickSort4Rand() {
+    vector<int> vec;
+    //    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int arr[] = {6, 9, 6, 12, 3, 6, 10, 6};
+    int len = sizeof (arr) / sizeof (int);
+
+    for (int i = 0; i < len; i++) {
+        vec.push_back(arr[i]);
+    }
+
+    cout << "排序前: ";
+    ShowVector(vec);
+
+    QuickSort4Rand(vec, 0, vec.size() - 1);
+
+    cout << "排序后: ";
     ShowVector(vec);
 }
 
