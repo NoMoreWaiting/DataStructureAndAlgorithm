@@ -275,8 +275,7 @@ void QuickSort2HoareLeft(int a[], int left, int right) {
         if (low < high) {
             Swap(a[low], a[high]);
             //            ShowArr(a, right + 1);
-        }
-        else { // 当找不到左右侧可交换的大小值时, low >= high 退出循环
+        } else { // 当找不到左右侧可交换的大小值时, low >= high 退出循环
             break;
         }
     }
@@ -303,15 +302,12 @@ int PartionQuickSort2HoareRight(int a[], int left, int right) {
         if (low <= high) {
             Swap(a[low], a[high]);
             //            ShowArr(a, right + 1);
-        }
-        else {
+        } else {
             break;
         }
     }
     return high;
 }
-
-
 
 // Hoare方法, 以右侧作为枢纽元
 
@@ -335,8 +331,7 @@ void QuickSort2HoareRight(int a[], int left, int right) {
         if (low <= high) {
             Swap(a[low], a[high]);
             //            ShowArr(a, right + 1);
-        }
-        else {
+        } else {
             break;
         }
     }
@@ -488,8 +483,6 @@ int Rand(int left, int right) {
     return left + rand() % size;
 }
 
-
-
 // 使用 hole 法, 右侧枢纽
 
 template <typename T>
@@ -510,8 +503,6 @@ int PartionQuickSort4(vector<T> &vec, int left, int right) {
     return low;
 }
 
-
-
 // 随机枢纽的快速排序
 
 template<typename T>
@@ -520,6 +511,87 @@ void QuickSort4Rand(vector<T> &vec, int left, int right) {
         int partion = PartionQuickSort4(vec, left, right);
         QuickSort4Rand(vec, left, partion - 1);
         QuickSort4Rand(vec, partion + 1, right);
+    }
+}
+
+
+
+// 快速排序, 枢纽三数中间值法
+
+// 中间值法小数组时使用的插入排序
+
+template<typename T>
+void insertSortForQuickSort(vector<T> & vec, int left, int right) {
+    for (int p = left + 1; p <= right; p++) {
+        T temp = vec[p];
+        int j;
+        for (j = p; j > left && temp < vec[j - 1]; j--) {
+            vec[j] = vec[j - 1];
+        }
+        vec[j] = temp;
+    }
+}
+
+// 中间值法取中间值为枢纽值
+
+template<typename T>
+const T & median(vector<T> &vec, int left, int right) {
+    // 取数据的头、尾和中间三个数，并对他们进行排序  
+    // 排序结果直接保存在数组中  
+    int center = (left + right) / 2;
+    if (vec[center] < vec[left]) {
+        Swap(vec[center], vec[left]);
+    }
+    if (vec[right] < vec[left]) {
+        Swap(vec[right], vec[left]);
+    }
+    if (vec[right] < vec[center]) { // 此时vec[center]为三值中的中值
+        Swap(vec[right], vec[center]);
+    }
+    // 把中值，即枢纽与数组倒数第二个元素交换  
+    // 将此3值最大值与倒数第二元素交换
+    // 现在第一个值小, 倒数第二值中, 最后值大
+    Swap(vec[center], vec[right - 1]);
+    return vec[right - 1];
+}
+
+// 三值法快排
+
+template<typename T>
+void QuickSort5TriValue(vector<T> &vec, int left, int right) {
+    // 少于三个值, 不能使用中值法快排
+    if (left + 3 <= right) {
+        T pivot = median(vec, left, right);
+        cout << "pivot: " << pivot << endl;
+
+        int low = left, high = right - 1;
+        while (true) {
+            //向后扫描数组  
+            //由于在选择枢纽时，已经把比枢纽值大的数据放在right位置  
+            //所以不会越界 
+            while (vec[++low] < pivot) {
+            }
+            //向前扫描数组  
+            //由于在选择枢纽时，已经把比枢纽值小的数据放在left位置 
+            //所以不会越界  
+            while (vec[--high] > pivot) {
+            }
+            //把比枢纽小的数据放在前部，大的放到后部 
+            if (low < high) {
+                Swap(vec[low], vec[high]);
+            } else {
+                //已经对要排序的数据都与枢纽比较了一次  
+                //把中枢纽保存在适当的位置，因为begin的数一定比枢纽大  
+                //所以把这个数放在数组后面  
+                Swap(vec[low], vec[right - 1]);
+                break;
+            }
+        }
+        QuickSort5TriValue(vec, left, low - 1);
+        QuickSort5TriValue(vec, low + 1, right);
+    } else {
+        //使用插入排序来处理很小的数组(n < 10)提高效率
+        insertSortForQuickSort(vec, left, right);
     }
 }
 
@@ -693,6 +765,25 @@ void TestQuickSort4Rand() {
     ShowVector(vec);
 
     QuickSort4Rand(vec, 0, vec.size() - 1);
+
+    cout << "排序后: ";
+    ShowVector(vec);
+}
+
+void TestQuickSort5TriValue() {
+    vector<int> vec;
+    //    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int arr[] = {6, 9, 6, 12, 3, 6, 10, 6};
+    int len = sizeof (arr) / sizeof (int);
+
+    for (int i = 0; i < len; i++) {
+        vec.push_back(arr[i]);
+    }
+
+    cout << "排序前: ";
+    ShowVector(vec);
+
+    QuickSort5TriValue(vec, 0, vec.size() - 1);
 
     cout << "排序后: ";
     ShowVector(vec);

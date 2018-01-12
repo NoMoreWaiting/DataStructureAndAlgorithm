@@ -52,6 +52,7 @@ int main(int argc, char** argv) {
     TestQuickSort3HoleRight();
     TestQuickSort3HoleNoRecursion();
     TestQuickSort4Rand();
+    TestQuickSort5TriValue();
 
     
     return 0;
