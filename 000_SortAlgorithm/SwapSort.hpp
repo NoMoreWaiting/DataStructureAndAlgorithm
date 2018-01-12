@@ -16,9 +16,15 @@
 
 #include "Common.h"
 
+#include <vector>
+#include <stack>
 #include <iostream>
+
 using std::cout;
 using std::endl;
+
+using std::stack;
+using std::vector;
 
 /*
  * 交换排序 -- 冒泡排序
@@ -41,6 +47,10 @@ using std::endl;
  * 改进3: 在每趟排序中进行正向和反向两遍冒泡的方法, 一次可以得到两个最终值(最大者和最小者) , 从而使排序趟数几乎减少了一半
  * 
  */
+
+
+
+// 冒泡排序基础版
 
 void BubbleSort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {
@@ -135,7 +145,7 @@ void BubbleSort4(int a[], int n) {
             }
 
         }
-        ShowArr(a, n);
+//        ShowArr(a, n);
         high = pos1;
         if (flag) {
             return;
@@ -148,7 +158,7 @@ void BubbleSort4(int a[], int n) {
                 flag = false;
             }
         }
-        ShowArr(a, n);
+//        ShowArr(a, n);
         low = pos1;
         if (flag) {
             return;
@@ -168,13 +178,18 @@ void BubbleSort4(int a[], int n) {
  * 排序方式: in-place
  * 稳定性: 不稳定
  * 
- * 基本思想:
+ * 基本思想: 使用两个指针来遍历待排序的数组，
+ * 根据两个指针遍历的方向可以分为两类：
+ *      第一，两个指针从待排序数组的同一个方向遍历。
+ *      第二，两个指针分别从带排序数组的两端进行遍历
  * 
  * 注意要点:
  * 
  * 改进1: 
  *
  */
+
+
 
 // 快速排序 单向划分 <<编程珠玑第2版>> 第112页的实现方法, 以最左侧作为枢纽元
 
@@ -201,6 +216,7 @@ void QuickSort1Left(int a[], int left, int right) {
 }
 
 
+
 // 快速排序 单向划分 算法导论上的方法 以最右侧作为枢纽元
 
 void QuickSort1Right(int a[], int left, int right) {
@@ -218,14 +234,15 @@ void QuickSort1Right(int a[], int left, int right) {
             low++; // low++后low指向了数组第一个大于枢纽的位置
             Swap(a[high], a[low]);
         }
-        ShowArr(a, right + 1);
+//        ShowArr(a, right + 1);
     }
     // 这里以右侧元素作为枢纽元, 那么low指向最后一个小于枢纽元的元素, low+1 指向序列中第一个大于枢纽元的大数. 互换之后, 从 low+2 到right 是大值区间, left 到 low 是小值区间.
     Swap(a[pivot], a[low + 1]);
-    ShowArr(a, right + 1);
+//    ShowArr(a, right + 1);
     QuickSort1Right(a, left, low);
     QuickSort1Right(a, low + 2, right);
 }
+
 
 
 // hoare版本只能保证左区间都是 <=枢纽元的值, 右区间都是 >=枢纽元的值
@@ -256,7 +273,7 @@ void QuickSort2HoareLeft(int a[], int left, int right) {
         // 为什么这里需要<=, 而前面的以左元素为枢纽元是 < 的条件?
         if (low < high) {
             Swap(a[low], a[high]);
-            ShowArr(a, right + 1);
+//            ShowArr(a, right + 1);
         }
         else { // 当找不到左右侧可交换的大小值时, low >= high 退出循环
             break;
@@ -270,6 +287,9 @@ void QuickSort2HoareLeft(int a[], int left, int right) {
     QuickSort2HoareLeft(a, high + 1, right); // 画图: 最后一次 ++ --, 让 low指向右区间第一个元素, high 指向左区间最后一个元素
 }
 
+
+// Hoare法(直接交换, 右侧枢纽元), 处理一次筛选
+
 int PartionQuickSort2HoareRight(int a[], int left, int right) {
     int pivot = a[right];
     int low = left - 1;
@@ -281,7 +301,7 @@ int PartionQuickSort2HoareRight(int a[], int left, int right) {
         }
         if (low <= high) {
             Swap(a[low], a[high]);
-            ShowArr(a, right + 1);
+//            ShowArr(a, right + 1);
         }
         else {
             break;
@@ -289,6 +309,10 @@ int PartionQuickSort2HoareRight(int a[], int left, int right) {
     }
     return high;
 }
+
+
+
+// Hoare方法, 以右侧作为枢纽元
 
 void QuickSort2HoareRight(int a[], int left, int right) {
     if (left >= right) {
@@ -307,9 +331,9 @@ void QuickSort2HoareRight(int a[], int left, int right) {
         // 目前的准则: 遇到等于枢纽元的值都会停下进行交换
         // 因为以右端元素为枢纽元, 右侧第一个元素(即枢纽元)天生不符合大于枢纽元的条件, 因此high少--了一次, 导致后面循环的时候会遇到 low = high的情况
         // 为什么这里需要<=, 而前面的以左元素为枢纽元是 < 的条件?
-        if (low <= high) { 
+        if (low <= high) {
             Swap(a[low], a[high]);
-            ShowArr(a, right + 1);
+//            ShowArr(a, right + 1);
         }
         else {
             break;
@@ -318,6 +342,139 @@ void QuickSort2HoareRight(int a[], int left, int right) {
 
     QuickSort2HoareRight(a, left, high); // 注意这里有个 4, 5 传入之后递归死循环了
     QuickSort2HoareRight(a, high + 1, right);
+}
+
+
+
+// hoare的变形版本: 空洞法, 以左侧为枢纽元
+// 该算法一趟排序后枢纽被放在了最终的位置上, 所以递归时不需要再递归此枢纽元
+// 算法中之所以可以在循环中赋值是因为枢纽元素值已经保存在了pivot中
+
+void QuickSort3HoleLeft(int a[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+
+    int low = left;
+    int high = right;
+    int pivot = a[low]; // 先保存枢纽元的值, 此时枢纽元相当于空洞
+
+    while (low < high) {
+        // 注意两个内层while的顺序不能换
+        while (low < high && a[high] >= pivot) { // 这里是>=不能使>，否则当数组元素等于枢纽时会死循环
+            high--;
+        }
+        a[low] = a[high]; // 将右侧开始第一个小于枢纽元的值插入左侧的空洞, 此时 high 位置的值相当于空洞
+        while (low < high && a[low] <= pivot) {// 这里是<=不能使<，否则当数组元素等于枢纽时会死循环
+            low++;
+        }
+        a[high] = a[low];
+    }
+
+    a[low] = pivot; // low此时为枢纽的位置
+
+    QuickSort3HoleLeft(a, left, low - 1); // 空洞法一次筛选后, 枢纽元位于最终的位置不需要在带入计算
+    QuickSort3HoleLeft(a, low + 1, right);
+
+}
+
+
+
+// hoare的变形版本: 空洞法, 以左侧为枢纽元, 以右侧为枢纽元
+
+void QuickSort3HoleRight(int a[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+
+    int low = left;
+    int high = right;
+    int pivot = a[high]; // 保存尾值为枢纽元
+
+    while (low < high) {
+        // 注意: 这里和以左值为枢纽元相反,
+        // 因为: 一开始的a[high]的值被保存了, a[high]相当于空洞, 所以先将a[low]的值赋值给 a[high]这个空洞
+        while (a[low] <= pivot && low < high) {
+            low++;
+        }
+        a[high] = a[low];
+        while (a[high] >= pivot && low < high) {
+            high--;
+        }
+        a[low] = a[high];
+    }
+    a[high] = pivot;
+    //    ShowArr(a, right + 1);
+    QuickSort3HoleRight(a, left, high - 1);
+    QuickSort3HoleRight(a, high + 1, right);
+}
+
+
+
+// 空洞法中一次筛选使用, 确定枢纽元的最终位置, 左侧区间为 <= 区间, 右侧区间为 >= 区间
+
+template<typename T>
+int PartionQuickSort3Hole(vector<T> &vec, int left, int right) {
+
+    int low = left;
+    int high = right;
+    T pivot = vec[low];
+
+    while (low < high) {
+        while (low < high && vec[high] >= pivot) {
+            high--;
+        }
+        vec[low] = vec[high];
+
+        while (low < high && vec[low] <= pivot) {
+            low++;
+        }
+        vec[high] = vec[low];
+    }
+    vec[low] = pivot;
+    return low;
+}
+
+
+
+// hoare变形版本: 空洞法, 非递归版本. 以第一个元素为枢纽  
+// 非递归算法用一个stack辅助数据结构，栈存放下一次要排序的两个下标 
+
+template<typename T>
+void QuickSort3HoleNoRecursion(vector<T>&vec, int left, int right) {
+    stack<int> st;
+    // 注意每次入栈都将较大的下标先入栈  
+    // 每次出栈相反：较大的小标会后出栈
+    st.push(right);
+    st.push(left);
+    int maxSize = 0;
+    while (!st.empty()) {
+        if (st.size() > maxSize) {
+            maxSize = st.size();
+            cout << "max stack size: " << maxSize << endl;
+        }
+        int low = st.top();
+        st.pop();
+        int high = st.top();
+        st.pop();
+        //        cout << low << " " << high << endl;  
+        // mid 是确定最终位置的枢纽元
+        int mid = PartionQuickSort3Hole(vec, low, high);
+        //        ShowVector(vec); 
+        // 相当于左侧区间
+        if (mid - 1 > low) {
+            // 存储下次循环中需要处理的 left 和 right
+            st.push(mid - 1);
+            st.push(low);
+        }
+        // 相当于右侧区间
+        if (mid + 1 < high) {
+            st.push(high);
+            st.push(mid + 1);
+        }
+    }
+    //    cout << "max stack size: " << maxSize << endl;
+    return;
 }
 
 void TestBubbleSort() {
@@ -431,8 +588,50 @@ void TestQuickSort2HoareRight() {
     ShowArr(arr, len);
 }
 
+void TestQuickSort3HoleLeft() {
+    //    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int arr[] = {6, 9, 6, 12, 3, 6, 10, 6};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
 
+    QuickSort3HoleLeft(arr, 0, len - 1);
 
+    cout << "排序后: ";
+    ShowArr(arr, len);
+}
+
+void TestQuickSort3HoleRight() {
+    //    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int arr[] = {6, 9, 6, 12, 3, 6, 10, 6};
+    int len = sizeof (arr) / sizeof (int);
+    cout << "排序前: ";
+    ShowArr(arr, len);
+
+    QuickSort3HoleRight(arr, 0, len - 1);
+
+    cout << "排序后: ";
+    ShowArr(arr, len);
+}
+
+void TestQuickSort3HoleNoRecursion() {
+    vector<int> vec;
+    //    int arr[10] = {999, 3, 66, 232, 35, 77, 112, 465, 908, 12};
+    int arr[] = {6, 9, 6, 12, 3, 6, 10, 6};
+    int len = sizeof (arr) / sizeof (int);
+
+    for (int i = 0; i < len; i++) {
+        vec.push_back(arr[i]);
+    }
+
+    cout << "排序前: ";
+    ShowVector(vec);
+
+    QuickSort3HoleNoRecursion(vec, 0, vec.size() - 1);
+
+    cout << "空洞法无递归版本 排序后: ";
+    ShowVector(vec);
+}
 
 
 #endif /* SWAPSORT_HPP */
