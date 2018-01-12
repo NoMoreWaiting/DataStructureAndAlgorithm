@@ -46,6 +46,8 @@ int main(int argc, char** argv) {
     TestBubbleSort4();
     TestQuickSort1Left();
     TestQuickSort1Right();
+    TestQuickSort2HoareLeft();
+    TestQuickSort2HoareRight();
 
     
     return 0;
