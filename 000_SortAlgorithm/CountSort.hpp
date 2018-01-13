@@ -89,9 +89,12 @@ void TestCountSort() {
 
     cout << "排序后: ";
     for (int i = 0; i < len; i++) {
-        cout << *(target + i) << ", ";
+        if (0 != i) {
+            cout << ", ";
+        }
+        cout << *(target + i);
     }
-
+    cout << endl;
 }
 
 

@@ -6,6 +6,7 @@
       <itemPath>CountSort.hpp</itemPath>
       <itemPath>InsertSort.hpp</itemPath>
       <itemPath>MergeSort.hpp</itemPath>
+      <itemPath>RadixSort.hpp</itemPath>
       <itemPath>SelectSort.hpp</itemPath>
       <itemPath>SwapSort.hpp</itemPath>
     </logicalFolder>
@@ -44,6 +45,8 @@
       </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="RadixSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SelectSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SwapSort.hpp" ex="false" tool="3" flavor2="0">
@@ -78,6 +81,8 @@
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RadixSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SelectSort.hpp" ex="false" tool="3" flavor2="0">
       </item>

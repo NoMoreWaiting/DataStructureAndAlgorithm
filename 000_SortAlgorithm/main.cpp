@@ -26,6 +26,7 @@
 #include "SwapSort.hpp"
 #include "MergeSort.hpp"
 #include "CountSort.hpp"
+#include "RadixSort.hpp"
 
 
 using namespace std;
@@ -51,6 +52,12 @@ using namespace std;
  *      比如计数排序要求待排序数的最大值不能太大，
  *      桶排序要求元素按照hash分桶后桶内元素的数量要均匀。
  *      线性时间非比较类排序的典型特点是以空间换时间。
+ * 
+ * 基数排序 vs 计数排序 vs 桶排序
+ * 这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：
+ *      基数排序：根据键值的每位数字来分配桶
+ *      计数排序：每个桶只存储单一键值
+ *      桶排序：每个桶存储一定范围的数值
  * 
  */
 
@@ -90,6 +97,7 @@ int main(int argc, char** argv) {
     TestMergeSortBinaryWay1();
 //    TestMultiWayMergeSort();
     TestCountSort();
+    TestRadixSort();
 
     
     return 0;
