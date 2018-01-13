@@ -561,6 +561,8 @@ template<typename T>
 void QuickSort5TriValue(vector<T> &vec, int left, int right) {
     // 少于三个值, 不能使用中值法快排
     if (left + 3 <= right) {
+        
+        // 三值选择中就已经确定了3个值的相对位置, 并且枢纽元的值也确定是一个偏中间的值, 不是边缘极值, 避免了极端情况的产生
         T pivot = median(vec, left, right);
         cout << "pivot: " << pivot << endl;
 
