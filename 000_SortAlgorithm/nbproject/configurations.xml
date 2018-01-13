@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles" displayName="头文件" projectFiles="true">
       <itemPath>Common.h</itemPath>
       <itemPath>InsertSort.hpp</itemPath>
+      <itemPath>MergeSort.hpp</itemPath>
       <itemPath>SelectSort.hpp</itemPath>
       <itemPath>SwapSort.hpp</itemPath>
     </logicalFolder>
@@ -38,6 +39,8 @@
       </item>
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SelectSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SwapSort.hpp" ex="false" tool="3" flavor2="0">
@@ -68,6 +71,8 @@
       <item path="Common.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SelectSort.hpp" ex="false" tool="3" flavor2="0">
       </item>

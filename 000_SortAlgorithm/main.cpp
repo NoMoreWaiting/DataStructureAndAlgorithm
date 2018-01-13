@@ -24,6 +24,7 @@
 #include "InsertSort.hpp"
 #include "SelectSort.hpp"
 #include "SwapSort.hpp"
+#include "MergeSort.hpp"
 
 
 using namespace std;
@@ -84,6 +85,9 @@ int main(int argc, char** argv) {
     TestQuickSort3HoleNoRecursion();
     TestQuickSort4Rand();
     TestQuickSort5TriValue();
+    TestMergeSortBinaryWay();
+    TestMergeSortBinaryWay1();
+    TestMultiWayMergeSort();
 
     
     return 0;

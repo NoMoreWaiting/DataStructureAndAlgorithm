@@ -72,5 +72,16 @@ void Swap(T &a, T&b) {
 }
 
 
+
+// 将src中的值拷入dest从first开始的位置
+
+template<typename T>
+void copyVector(vector<T> & dest, vector<T> & src, int len, int first){
+    for(int i = 0, j = first; i<len; i++, j++){
+        dest[j] = src[i];
+    }
+}
+
+
 #endif /* COMMON_H */
 
