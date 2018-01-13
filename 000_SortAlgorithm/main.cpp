@@ -25,6 +25,7 @@
 #include "SelectSort.hpp"
 #include "SwapSort.hpp"
 #include "MergeSort.hpp"
+#include "CountSort.hpp"
 
 
 using namespace std;
@@ -87,7 +88,8 @@ int main(int argc, char** argv) {
     TestQuickSort5TriValue();
     TestMergeSortBinaryWay();
     TestMergeSortBinaryWay1();
-    TestMultiWayMergeSort();
+//    TestMultiWayMergeSort();
+    TestCountSort();
 
     
     return 0;
