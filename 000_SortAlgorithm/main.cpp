@@ -27,6 +27,7 @@
 #include "MergeSort.hpp"
 #include "CountSort.hpp"
 #include "RadixSort.hpp"
+#include "BucketSort.hpp"
 
 
 using namespace std;
@@ -98,6 +99,7 @@ int main(int argc, char** argv) {
 //    TestMultiWayMergeSort();
     TestCountSort();
     TestRadixSort();
+    TestBucketSort();
 
     
     return 0;
