@@ -29,6 +29,8 @@
 #include "RadixSort.hpp"
 #include "BucketSort.hpp"
 
+#include "LeetCodeArray.h"
+
 
 using namespace std;
 
@@ -62,8 +64,6 @@ using namespace std;
  * 
  */
 
-
-
 /**
  * main 函数
  * para:    argc
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
     TestHeapSort();
     TestBigHeapSort();
     TestBubbleSort();
-    TestBubbleSort1();    
+    TestBubbleSort1();
     TestBubbleSort2();
     TestBubbleSort3();
     TestBubbleSort4();
@@ -96,12 +96,17 @@ int main(int argc, char** argv) {
     TestQuickSort5TriValue();
     TestMergeSortBinaryWay();
     TestMergeSortBinaryWay1();
-//    TestMultiWayMergeSort();
+    //    TestMultiWayMergeSort();
     TestCountSort();
     TestRadixSort();
     TestBucketSort();
 
-    
+    PascalTriangle pascalTriangle;
+    pascalTriangle.Test();
+
+    ArrayPartition arrayPartition;
+    arrayPartition.Test();
+
     return 0;
 }
 

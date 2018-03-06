@@ -6,6 +6,7 @@
       <itemPath>Common.h</itemPath>
       <itemPath>CountSort.hpp</itemPath>
       <itemPath>InsertSort.hpp</itemPath>
+      <itemPath>LeetCodeArray.h</itemPath>
       <itemPath>MergeSort.hpp</itemPath>
       <itemPath>RadixSort.hpp</itemPath>
       <itemPath>SelectSort.hpp</itemPath>
@@ -46,6 +47,8 @@
       </item>
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="LeetCodeArray.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RadixSort.hpp" ex="false" tool="3" flavor2="0">
@@ -84,6 +87,8 @@
       <item path="CountSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LeetCodeArray.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
