@@ -30,6 +30,7 @@
 #include "BucketSort.hpp"
 
 #include "LeetCodeArray.hpp"
+#include "LeetCodeList.hpp"
 
 
 using namespace std;
@@ -109,6 +110,9 @@ int main(int argc, char** argv) {
 
     ArrayPartition arrayPartition;
     arrayPartition.Test();
+    
+    AddTwoNumbers addTwoNumbers;
+    addTwoNumbers.Test();
 
     return 0;
 }

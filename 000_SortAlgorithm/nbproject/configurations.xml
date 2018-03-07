@@ -6,6 +6,8 @@
       <itemPath>Common.h</itemPath>
       <itemPath>CountSort.hpp</itemPath>
       <itemPath>InsertSort.hpp</itemPath>
+      <itemPath>LeetCodeArray.hpp</itemPath>
+      <itemPath>LeetCodeList.hpp</itemPath>
       <itemPath>MergeSort.hpp</itemPath>
       <itemPath>RadixSort.hpp</itemPath>
       <itemPath>SelectSort.hpp</itemPath>
@@ -27,7 +29,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>000_SortAlgorithm-Makefile.mk</itemPath>
     </logicalFolder>
-    <itemPath>LeetCodeArray.hpp</itemPath>
   </logicalFolder>
   <projectmakefile>000_SortAlgorithm-Makefile.mk</projectmakefile>
   <confs>
@@ -51,6 +52,8 @@
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LeetCodeArray.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LeetCodeList.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -92,6 +95,8 @@
       <item path="InsertSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LeetCodeArray.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LeetCodeList.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
       </item>
