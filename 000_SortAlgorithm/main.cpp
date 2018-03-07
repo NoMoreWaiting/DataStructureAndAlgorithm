@@ -100,6 +100,9 @@ int main(int argc, char** argv) {
     TestCountSort();
     TestRadixSort();
     TestBucketSort();
+    
+    TwoSum twoSum;
+    twoSum.Test();
 
     PascalTriangle pascalTriangle;
     pascalTriangle.Test();
