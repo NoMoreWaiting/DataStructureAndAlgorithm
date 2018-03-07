@@ -29,7 +29,7 @@
 #include "RadixSort.hpp"
 #include "BucketSort.hpp"
 
-#include "LeetCodeArray.h"
+#include "LeetCodeArray.hpp"
 
 
 using namespace std;
