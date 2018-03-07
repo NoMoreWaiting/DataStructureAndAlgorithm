@@ -109,7 +109,7 @@ public:
 
         vector<int> vecTest3 = BetterTwoSum(vecTest1, 6);
         ShowVector<int> (vecTest3);
-        
+
         ShowVector<int>(vecTest1);
 
         vector<int> vecTest4 = BetterTwoSum2(vecTest1, 6);
@@ -119,6 +119,7 @@ public:
 
 
 // 119 Pascal's Triangle II
+
 /*
  * Given an index k, return the kth row of the Pascal's triangle.
  * For example, given k = 3,
@@ -175,7 +176,61 @@ public:
 };
 
 
+// 169. Majority Element
+
+/*
+ * Given an array of size n, find the majority element. The majority element is the element that appears more than n/2  times.
+ * 
+ * You may assume that the array is non-empty and the majority element always exist in the array.
+ * 
+ * Credits:
+ * Special thanks to @ts for adding this problem and creating all test cases.
+ */
+
+class MajorityElement {
+public:
+
+    // first version  it's no good
+    int majorityElement(vector<int> & nums) {
+        for (int i = 0; i < nums.size() / 2 + 1; i++) {
+            int times = 0;
+            for (int j = i; j < nums.size(); j++) {
+                if (nums[i] == nums[j]) {
+                    times++;
+                }
+                if (times > nums.size() / 2) {
+                    return nums[i];
+                }
+            }
+        }
+        return 0;
+    }
+
+    int betterMajorityElement(vector<int> & nums) {
+        std::sort(nums.begin(), nums.end());
+        return nums[nums.size() / 2];
+    }
+
+    void Test() {
+        vector<int> vecTest1;
+        vecTest1.push_back(1);
+        vecTest1.push_back(1);
+        vecTest1.push_back(1);
+        vecTest1.push_back(1);
+        vecTest1.push_back(3);
+        vecTest1.push_back(4);
+        vecTest1.push_back(2);
+        cout << majorityElement(vecTest1) << " , ";
+        cout << betterMajorityElement(vecTest1) << endl;
+    }
+
+};
+
+
+
+
 // 561 Array Partition I
+
 /*
  * Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
  * Example 1:
