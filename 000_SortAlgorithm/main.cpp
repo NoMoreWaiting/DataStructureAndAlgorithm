@@ -102,28 +102,29 @@ int main(int argc, char** argv) {
     TestCountSort();
     TestRadixSort();
     TestBucketSort();
-    
+
     // array
     TwoSum twoSum;
     twoSum.Test();
 
     PascalTriangle pascalTriangle;
     pascalTriangle.Test();
-    
+
     MajorityElement majorityElement;
     majorityElement.Test();
 
     ArrayPartition arrayPartition;
     arrayPartition.Test();
-    
-    
+
+
     // list
     AddTwoNumbers addTwoNumbers;
     addTwoNumbers.Test();
-    
-    
+
+
     // string
-    
+    LongestSubstring longestSubstring;
+    longestSubstring.Test();
 
     return 0;
 }

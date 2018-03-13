@@ -29,6 +29,7 @@ using std::string;
 using std::unordered_map;
 using std::vector;
 
+// 3. Longest Substring Without Repeating Characters
 
 class LongestSubstring {
 public:
@@ -38,11 +39,16 @@ public:
         int maxLen = 0, start = -1;
         for (int i = 0; i != s.length(); i++) {
             if (dict[s[i]] > start)
-                start = dict[s[i]];
-            dict[s[i]] = i;
+                start = dict[s[i]]; // 如果有重复的字符, 那么start的位置就是上一个重复的字符位置
+            dict[s[i]] = i; // 保存每个字符最新出现的位置
             maxLen = std::max(maxLen, i - start);
         }
         return maxLen;
+    }
+    
+    void Test(){
+        string str = "adggdwegdasga";
+        cout << "字符串: " << str << ", 最长字串长度: " << lengthOfLongestSubstring(str) << endl;
     }
 };
 
