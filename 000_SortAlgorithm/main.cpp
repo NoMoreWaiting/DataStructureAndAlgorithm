@@ -106,6 +106,9 @@ int main(int argc, char** argv) {
     // array
     TwoSum twoSum;
     twoSum.Test();
+    
+    MedianOfTwoSortedArrays medianOfTwoSortedArrays;
+    medianOfTwoSortedArrays.Test();
 
     PascalTriangle pascalTriangle;
     pascalTriangle.Test();

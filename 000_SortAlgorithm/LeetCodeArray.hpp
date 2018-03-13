@@ -31,6 +31,7 @@ using std::vector;
 // Array
 
 // 1 Two Sum
+// topics: array, hash table
 
 /*
  * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -118,7 +119,88 @@ public:
 };
 
 
+// 4. Median of Two Sorted Arrays
+// topics: array, binary search, divide and conquer
+
+/*
+ * There are two sorted arrays nums1 and nums2 of size m and n respectively.
+ * 
+ * Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+ * 
+ * Example 1:
+ * nums1 = [1, 3]
+ * nums2 = [2]
+ * 
+ * The median is 2.0
+ * Example 2:
+ * nums1 = [1, 2]
+ * nums2 = [3, 4]
+ * 
+ * The median is (2 + 3)/2 = 2.5
+ */
+
+class MedianOfTwoSortedArrays {
+public:
+
+    double findMedianSortedArrays(vector<int> & A, vector<int> & B) {
+        if (A.size() > B.size()) {
+            return findMedianSortedArrays(B, A);
+        }
+
+        int m = A.size();
+        int n = B.size();
+        int imin = 0, imax = m, mid = (m + n + 1) / 2;
+        while (imin <= imax) {
+            int i = (imin + imax) / 2; // 二分查找
+            int j = mid - i;
+            if (i > 0 && A[i - 1] > B[j]) {
+                // i is too big, must decrease it
+                imax = i - 1;
+            }
+            else if (i < m && B[j - 1] > A[i]) {
+                // i is too small, must increase it
+                imin = i + 1;
+            }
+            else {
+                // now i is perfect
+                int maxOfLeft = 0;
+                int minOfRight = 0;
+                if (i == 0)
+                    maxOfLeft = B[j - 1];
+                else if (j == 0)
+                    maxOfLeft = A[i - 1];
+                else
+                    maxOfLeft = A[i - 1] > B[j - 1] ? A[i - 1] : B[j - 1];
+
+                if ((m + n) % 2 == 1)
+                    return maxOfLeft;
+
+                if (i == m)
+                    minOfRight = B[j];
+                else if (j == n)
+                    minOfRight = A[i];
+                else
+                    minOfRight = A[i] < B[j] ? A[i] : B[j];
+
+                return (maxOfLeft + minOfRight) / 2.0;
+            }
+        }
+    }
+
+    void Test() {
+        int array1[] = {1, 3};
+        int array2[] = {2};
+        vector<int> vec1(array1, array1 + sizeof (array1) / sizeof (int));
+        vector<int> vec2(std::begin(array2), std::end(array2));
+
+        cout << "findMedianSortedArrays " << findMedianSortedArrays(vec1, vec2) << endl;
+
+    }
+};
+
+
 // 119 Pascal's Triangle II
+// topics: array
 
 /*
  * Given an index k, return the kth row of the Pascal's triangle.
@@ -177,6 +259,7 @@ public:
 
 
 // 169. Majority Element
+// topics: array, divide and conquer, bit manipulation
 
 /*
  * Given an array of size n, find the majority element. The majority element is the element that appears more than n/2  times.
@@ -191,6 +274,7 @@ class MajorityElement {
 public:
 
     // first version  it's no good
+
     int majorityElement(vector<int> & nums) {
         for (int i = 0; i < nums.size() / 2 + 1; i++) {
             int times = 0;
@@ -230,6 +314,7 @@ public:
 
 
 // 561 Array Partition I
+// topics: array
 
 /*
  * Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
