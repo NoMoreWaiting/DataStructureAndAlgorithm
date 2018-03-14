@@ -128,6 +128,9 @@ int main(int argc, char** argv) {
     // string
     LongestSubstring longestSubstring;
     longestSubstring.Test();
+    
+    LongestPalindromicSubstring longestPalindromicSubstring;
+    longestPalindromicSubstring.Test();
 
     return 0;
 }
