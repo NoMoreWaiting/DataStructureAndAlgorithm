@@ -31,6 +31,7 @@
 
 #include "LeetCodeArray.hpp"
 #include "LeetCodeList.hpp"
+#include "LeetCodeMath.hpp"
 #include "LeetCodeString.hpp"
 
 
@@ -124,6 +125,9 @@ int main(int argc, char** argv) {
     AddTwoNumbers addTwoNumbers;
     addTwoNumbers.Test();
 
+    // math
+    ReverseInteger reverseInteger;
+    reverseInteger.Test();
 
     // string
     LongestSubstring longestSubstring;

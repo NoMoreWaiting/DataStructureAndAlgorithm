@@ -8,6 +8,7 @@
       <itemPath>InsertSort.hpp</itemPath>
       <itemPath>LeetCodeArray.hpp</itemPath>
       <itemPath>LeetCodeList.hpp</itemPath>
+      <itemPath>LeetCodeMath.hpp</itemPath>
       <itemPath>LeetCodeString.hpp</itemPath>
       <itemPath>MergeSort.hpp</itemPath>
       <itemPath>RadixSort.hpp</itemPath>
@@ -56,6 +57,8 @@
       </item>
       <item path="LeetCodeList.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="LeetCodeMath.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="LeetCodeString.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MergeSort.hpp" ex="false" tool="3" flavor2="0">
@@ -100,6 +103,8 @@
       <item path="LeetCodeArray.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LeetCodeList.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LeetCodeMath.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LeetCodeString.hpp" ex="false" tool="3" flavor2="0">
       </item>
