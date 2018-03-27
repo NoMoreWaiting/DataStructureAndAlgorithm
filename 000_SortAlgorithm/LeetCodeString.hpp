@@ -153,5 +153,82 @@ public:
 };
 
 
+// 6. ZigZag Conversion
+// Topics: String
+
+/*
+ * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+ * 
+ * P   A   H   N
+ * A P L S I I G
+ * Y   I   R
+ * And then read line by line: "PAHNAPLSIIGYIR"
+ * Write the code that will take a string and make this conversion given a number of rows:
+ * 
+ * string convert(string text, int nRows);
+ * convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
+ */
+
+class ZigZagConversion {
+public:
+
+    string convert(string s, int numRows) {
+        int size = s.size();
+        if (size <= numRows || numRows < 2)
+            return s;
+        int totalCircu = numRows + (numRows - 2);
+        string *strings = new string[numRows];
+        for (int i = 0; i < size; i++) {
+            int nowTotalPos = i % totalCircu;
+            int nowRow = 0;
+            if (nowTotalPos > numRows - 1) {
+                // 注意这里的算法逻辑. 画图更清晰. numRows是行数, 需要换算为行的下标, 所以-1. 另外折向时需要在-1;
+                nowRow = (numRows - 1 - 1) - (nowTotalPos) % numRows;
+            }
+            else {
+                nowRow = nowTotalPos % numRows;
+            }
+            strings[nowRow].push_back(s[i]);
+            cout << strings[nowRow] << endl;
+        }
+        string result;
+        for (int i = 0; i < numRows; i++) {
+            result.append(strings[i]);
+        }
+        return result;
+    }
+
+    string betterConvert(string s, int numRows) {
+        if (s.size() <= numRows || numRows < 2)
+            return s;
+        string *strings = new string[numRows];
+        int row = 0;
+        int step = 1;
+        for (int i = 0; i < s.size(); i++) {
+            if (0 == row) {
+                step = 1;
+            }
+            if (row == numRows - 1) {
+                step = -1;
+            }
+            strings[row].push_back(s[i]);
+            row += step;
+        }
+        string result;
+        for (int i = 0; i < numRows; i++) {
+            result.append(strings[i]);
+        }
+        return result;
+    }
+
+    void Test() {
+        string testStr = "ABCDEF";
+        cout << "TestZigZagConversion: " << convert(testStr, 4) << endl;
+        cout << "TestZigZagConversion: " << betterConvert(testStr, 4) << endl;
+    }
+};
+
+
+
 #endif /* LEETCODESTRING_HPP */
 

@@ -106,7 +106,7 @@ int main(int argc, char** argv) {
     // array
     TwoSum twoSum;
     twoSum.Test();
-    
+
     MedianOfTwoSortedArrays medianOfTwoSortedArrays;
     medianOfTwoSortedArrays.Test();
 
@@ -128,10 +128,12 @@ int main(int argc, char** argv) {
     // string
     LongestSubstring longestSubstring;
     longestSubstring.Test();
-    
+
     LongestPalindromicSubstring longestPalindromicSubstring;
     longestPalindromicSubstring.Test();
 
+    ZigZagConversion zigZagConversion;
+    zigZagConversion.Test();
     return 0;
 }
 
