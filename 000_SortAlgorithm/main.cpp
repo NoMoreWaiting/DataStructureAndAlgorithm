@@ -138,6 +138,10 @@ int main(int argc, char** argv) {
 
     ZigZagConversion zigZagConversion;
     zigZagConversion.Test();
+    
+    String2Integer string2Integer;
+    string2Integer.Test();
+    
     return 0;
 }
 
