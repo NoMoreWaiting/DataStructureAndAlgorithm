@@ -128,6 +128,9 @@ int main(int argc, char** argv) {
     // math
     ReverseInteger reverseInteger;
     reverseInteger.Test();
+    
+    PalindromeNumber palindromeNumber;
+    palindromeNumber.Test();
 
     // string
     LongestSubstring longestSubstring;
