@@ -120,6 +120,8 @@ int main(int argc, char** argv) {
     ArrayPartition arrayPartition;
     arrayPartition.Test();
 
+    ContainerWithMostWater containerWithMostWater;
+    containerWithMostWater.Test();
 
     // list
     AddTwoNumbers addTwoNumbers;
@@ -128,7 +130,7 @@ int main(int argc, char** argv) {
     // math
     ReverseInteger reverseInteger;
     reverseInteger.Test();
-    
+
     PalindromeNumber palindromeNumber;
     palindromeNumber.Test();
 
@@ -141,10 +143,10 @@ int main(int argc, char** argv) {
 
     ZigZagConversion zigZagConversion;
     zigZagConversion.Test();
-    
+
     String2Integer string2Integer;
     string2Integer.Test();
-    
+
     return 0;
 }
 
