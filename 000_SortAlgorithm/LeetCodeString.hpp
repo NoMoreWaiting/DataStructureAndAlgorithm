@@ -310,14 +310,68 @@ public:
  * isMatch("aa", "a*") -> true
  * isMatch("aa", ".*") -> true
  * isMatch("ab", ".*") -> true
- * isMatch("aab", "c*a*b") → true
+ * isMatch("aab", "c*a*b") -> true
  */
 
 class RegularExpressionMatching {
 public:
+    static const int FRONT = -1;
 
-    bool isMatch(string s, string p) {
+    bool isMatchBackTrace(string s, string p) {
         // this is too hard
+        return myMatch(s, s.length() - 1, p, p.length() - 1);
+    }
+
+    // 递归, 回溯思想
+    // 从后往前匹配, 遇到*时前方必有一个字符, 不需要考虑越界问题
+
+    bool myMatch(string& s, int i, string& p, int j) {
+        if (j == FRONT) {
+            if (i == FRONT)
+                return true; // 两个字符串都走完时, 匹配完成, 否则不匹配
+            else
+                return false;
+        }
+
+        if (p[j] == '*') { // '*' 字符分2种情况 存在或者不存在
+            if (i > FRONT && (p[j - 1] == '.' || p[j - 1] == s[i]))
+                if (myMatch(s, i - 1, p, j)) // 去除目标字符串的一个值, 递归找下一层, 符合情况为匹配到
+                    return true;
+            return myMatch(s, i, p, j - 2); // X* 已经无法匹配字符串, 去掉'*'以及前一位, 继续匹配 
+        }
+        if (p[j] == '.' || p[j] == s[i]) // 普通字符, 直接比较
+            return myMatch(s, i - 1, p, j - 1);
+        return false;
+    }
+
+    // DP 动态规划. 二维bool数组寻找真值匹配路径
+
+    bool isMatchDP(string s, string p) {
+        int m = s.length(), n = p.length();
+        // 加入空串
+        vector < vector<bool> > dp(m + 1, vector<bool> (n + 1, false));
+        dp[0][0] = true; // 空串一定匹配
+        for (int i = 0; i <= m; i++)
+            for (int j = 1; j <= n; j++)
+                if (p[j - 1] == '*')
+                    // 需要研究
+                    dp[i][j] = dp[i][j - 2] || (i > 0 && (s[i - 1] == p[j - 2] || p[j - 2] == '.') && dp[i - 1][j]);
+                else
+                    dp[i][j] = i > 0 && dp[i - 1][j - 1] && (s[i - 1] == p[j - 1] || p[j - 1] == '.');
+        return dp[m][n];
+    }
+
+    void Test() {
+        string target = "aa";
+        string source = "aa";
+        if (isMatchBackTrace(target, source))
+            cout << "isMatchBackTrace: true" << endl;
+        else
+            cout << "isMatchBackTrace: false" << endl;
+        if (isMatchDP(target, source))
+            cout << "isMatchDP: true" << endl;
+        else
+            cout << "isMatchDP: false" << endl;
     }
 };
 
@@ -336,7 +390,7 @@ public:
     string longestCommonPrefix(vector<string>& strs) {
         if (strs.empty())
             return "";
-        if(strs.size() == 1){
+        if (strs.size() == 1) {
             return strs[0];
         }
         string minStr = strs[0];
@@ -357,15 +411,15 @@ public:
                     return pre;
                 }
             }
-            pre = minStr.substr(0, i+1);
+            pre = minStr.substr(0, i + 1);
         }
         return pre;
     }
 
     void Test() {
         string arrs[] = {"a", "b"};
-        vector<string> vecStr(arrs, arrs+sizeof(arrs)/sizeof(string));
-        cout << "longestCommonPrefix: "<< longestCommonPrefix(vecStr) << endl;
+        vector<string> vecStr(arrs, arrs + sizeof (arrs) / sizeof (string));
+        cout << "longestCommonPrefix: " << longestCommonPrefix(vecStr) << endl;
     }
 };
 

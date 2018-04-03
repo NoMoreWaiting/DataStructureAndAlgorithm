@@ -153,6 +153,9 @@ int main(int argc, char** argv) {
     String2Integer string2Integer;
     string2Integer.Test();
     
+    RegularExpressionMatching regularExpressionMatching;
+    regularExpressionMatching.Test();
+    
     LongestCommonPrefix longestCommonPrefix;
     longestCommonPrefix.Test();
 
