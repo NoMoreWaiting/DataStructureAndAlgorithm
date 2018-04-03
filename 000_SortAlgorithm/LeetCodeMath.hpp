@@ -146,8 +146,8 @@ public:
         static string X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
         //                        1    2      3      4     5     6     7      8        9  
         static string I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-        
-        return M[num/1000] + C[num%1000/100] +X[num%100/10] + I[num%10];
+
+        return M[num / 1000] + C[num % 1000 / 100] + X[num % 100 / 10] + I[num % 10];
     }
 
     void Test() {
@@ -155,6 +155,81 @@ public:
         cout << "intToRoman: " << intToRoman(num) << endl;
         cout << "betterIntToRoman: " << betterIntToRoman(num) << endl;
     }
+};
+
+// 13. Roman to Integer
+// Topics: math, string
+
+/*
+ *Given a roman numeral, convert it to an integer.
+ *Input is guaranteed to be within the range from 1 to 3999.
+ */
+
+class Roman2Integer {
+public:
+    // case from left
+
+    int romanToIntLeft(string s) {
+        static unordered_map<char, int> T = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+        if (s.empty()) {
+            return -1;
+        }
+
+        int sum = 0;
+        // 从左向右扫描
+        // 注意 s.lenght() unsigned int. 直接 -2 会数据溢出.
+        for (int i = 0; i <= int(s.length()) - 2; i++) {
+            if (T[s[i]] < T[s[i + 1]]) // [i+1] 可能会越界, 使用 length()-2
+                sum -= T[s[i]];
+            else
+                sum += T[s[i]];
+        }
+        sum += T[s.back()];
+        return sum;
+    }
+
+    // case from right
+
+    int romanToIntRight(string s) {
+        static unordered_map<char, int> T = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+        if (s.empty()) {
+            return -1;
+        }
+
+        int sum = T[s.back()];
+        // 从右向左扫描
+        for (int i = s.length() - 2; i >= 0; i--) {
+            if (T[s[i]] < T[s[i + 1]]) // [i+1] 可能会越界, 使用 length()-2
+                sum -= T[s[i]];
+            else
+                sum += T[s[i]];
+        }
+        return sum;
+    }
+
+    void Test() {
+        string s = "D";
+        cout << "romanToIntLeft: " << romanToIntLeft(s) << endl;
+        cout << "romanToIntRight: " << romanToIntRight(s) << endl;
+    }
+
+
 };
 
 

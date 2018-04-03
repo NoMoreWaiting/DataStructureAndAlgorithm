@@ -136,6 +136,9 @@ int main(int argc, char** argv) {
     
     Integer2Roman integer2Roman;
     integer2Roman.Test();
+    
+    Roman2Integer roman2Integer;
+    roman2Integer.Test();
 
     // string
     LongestSubstring longestSubstring;
