@@ -152,6 +152,9 @@ int main(int argc, char** argv) {
 
     String2Integer string2Integer;
     string2Integer.Test();
+    
+    LongestCommonPrefix longestCommonPrefix;
+    longestCommonPrefix.Test();
 
     return 0;
 }

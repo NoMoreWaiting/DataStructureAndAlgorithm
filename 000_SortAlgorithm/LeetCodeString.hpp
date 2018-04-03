@@ -33,17 +33,16 @@ using std::vector;
 // topics: hash table, two pointers, string
 
 /*
- *Given a string, find the length of the longest substring without repeating characters.
- *
- *Examples:
- *
- *Given "abcabcbb", the answer is "abc", which the length is 3.
- *
- *Given "bbbbb", the answer is "b", with the length of 1.
- *
- *Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ * Given a string, find the length of the longest substring without repeating characters.
+ * 
+ * Examples:
+ * 
+ * Given "abcabcbb", the answer is "abc", which the length is 3.
+ * 
+ * Given "bbbbb", the answer is "b", with the length of 1.
+ * 
+ * Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
  */
-
 class LongestSubstring {
 public:
 
@@ -70,16 +69,16 @@ public:
 // topics: string, dynamic programming
 
 /*
- *Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
- *
- *Example:
- *Input: "babad"
- *Output: "bab"
- *Note: "aba" is also a valid answer.
- *
- *Example:
- *Input: "cbbd"
- *Output: "bb"
+ * Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+ * 
+ * Example:
+ * Input: "babad"
+ * Output: "bab"
+ * Note: "aba" is also a valid answer.
+ * 
+ * Example:
+ * Input: "cbbd"
+ * Output: "bb"
  */
 
 class LongestPalindromicSubstring {
@@ -233,17 +232,17 @@ public:
 // Topics: math, string
 
 /*
- *Implement atoi to convert a string to an integer.
- *
- *Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.
- *
- *Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
- *
- *Requirements for atoi:
- *The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
- *The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.
- *If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
- *If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
+ * Implement atoi to convert a string to an integer.
+ * 
+ * Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.
+ * 
+ * Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
+ * 
+ * Requirements for atoi:
+ * The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
+ * The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.
+ * If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
+ * If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
  */
 
 class String2Integer {
@@ -296,22 +295,22 @@ public:
 // Topics: string, dynamic programming, backtracking
 
 /*
- *Implement regular expression matching with support for '.' and '*'.
- *'.' Matches any single character.
- *'*' Matches zero or more of the preceding element.
- *The matching should cover the entire input string (not partial).
- *
- *The function prototype should be:
- *bool isMatch(const char *s, const char *p)
- *
- *Some examples:
- *isMatch("aa","a") → false
- *isMatch("aa","aa") → true
- *isMatch("aaa","aa") → false
- *isMatch("aa", "a*") → true
- *isMatch("aa", ".*") → true
- *isMatch("ab", ".*") → true
- *isMatch("aab", "c*a*b") → true
+ * Implement regular expression matching with support for '.' and '*'.
+ * '.' Matches any single character.
+ * '*' Matches zero or more of the preceding element.
+ * The matching should cover the entire input string (not partial).
+ * 
+ * The function prototype should be:
+ * bool isMatch(const char *s, const char *p)
+ * 
+ * Some examples:
+ * isMatch("aa","a") -> false
+ * isMatch("aa","aa") -> true
+ * isMatch("aaa","aa") -> false
+ * isMatch("aa", "a*") -> true
+ * isMatch("aa", ".*") -> true
+ * isMatch("ab", ".*") -> true
+ * isMatch("aab", "c*a*b") → true
  */
 
 class RegularExpressionMatching {
@@ -319,6 +318,54 @@ public:
 
     bool isMatch(string s, string p) {
         // this is too hard
+    }
+};
+
+
+
+// 14. Longest Common Prefix
+// Topics: string
+
+/*
+ * Write a function to find the longest common prefix string amongst an array of strings.
+ */
+
+class LongestCommonPrefix {
+public:
+
+    string longestCommonPrefix(vector<string>& strs) {
+        if (strs.empty())
+            return "";
+        if(strs.size() == 1){
+            return strs[0];
+        }
+        string minStr = strs[0];
+        int suffix = 0;
+        for (int i = 1; i < strs.size() - 1; i++) {
+            if (strs[i].length() < minStr.length()) {
+                minStr = strs[i];
+                suffix = i;
+            }
+        }
+        string pre = "";
+        for (int i = 0; i < minStr.length(); i++) {
+            for (int j = 0; j < strs.size(); j++) {
+                if (j == suffix) {
+                    continue;
+                }
+                if (minStr[i] != strs[j][i]) {
+                    return pre;
+                }
+            }
+            pre = minStr.substr(0, i+1);
+        }
+        return pre;
+    }
+
+    void Test() {
+        string arrs[] = {"a", "b"};
+        vector<string> vecStr(arrs, arrs+sizeof(arrs)/sizeof(string));
+        cout << "longestCommonPrefix: "<< longestCommonPrefix(vecStr) << endl;
     }
 };
 

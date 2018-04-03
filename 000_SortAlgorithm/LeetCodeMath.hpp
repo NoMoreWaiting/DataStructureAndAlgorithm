@@ -34,16 +34,16 @@ using std::vector;
 // Topics: math
 
 /*
- *Given a 32-bit signed integer, reverse digits of an integer.
+ * Given a 32-bit signed integer, reverse digits of an integer.
  *
- *Input: 123
- *Output:  321
+ * Input: 123
+ * Output:  321
  *
- *Input: -123
- *Output: -321
+ * Input: -123
+ * Output: -321
  *
- *Note:
- *Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+ * Note:
+ * Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
  */
 
 class ReverseInteger {
@@ -72,13 +72,13 @@ public:
 // Topics: math
 
 /*
- *Determine whether an integer is a palindrome. Do this without extra space.
+ * Determine whether an integer is a palindrome. Do this without extra space.
  *
- *Some hints:
- *Could negative integers be palindromes? (ie, -1)
- *If you are thinking of converting the integer to string, note the restriction of using extra space.
- *You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", you know that the reversed integer might overflow. How would you handle such case?
- *There is a more generic way of solving this problem.
+ * Some hints:
+ * Could negative integers be palindromes? (ie, -1)
+ * If you are thinking of converting the integer to string, note the restriction of using extra space.
+ * You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", you know that the reversed integer might overflow. How would you handle such case?
+ * There is a more generic way of solving this problem.
  */
 
 class PalindromeNumber {
@@ -107,8 +107,8 @@ public:
 // Topics: math, string
 
 /*
- *Given an integer, convert it to a roman numeral.
- *Input is guaranteed to be within the range from 1 to 3999.
+ * Given an integer, convert it to a roman numeral.
+ * Input is guaranteed to be within the range from 1 to 3999.
  */
 
 class Integer2Roman {
@@ -161,8 +161,8 @@ public:
 // Topics: math, string
 
 /*
- *Given a roman numeral, convert it to an integer.
- *Input is guaranteed to be within the range from 1 to 3999.
+ * Given a roman numeral, convert it to an integer.
+ * Input is guaranteed to be within the range from 1 to 3999.
  */
 
 class Roman2Integer {
@@ -228,8 +228,6 @@ public:
         cout << "romanToIntLeft: " << romanToIntLeft(s) << endl;
         cout << "romanToIntRight: " << romanToIntRight(s) << endl;
     }
-
-
 };
 
 
