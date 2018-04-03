@@ -102,5 +102,61 @@ public:
     }
 };
 
+
+// 12. Integer to Roman
+// Topics: math, string
+
+/*
+ *Given an integer, convert it to a roman numeral.
+ *Input is guaranteed to be within the range from 1 to 3999.
+ */
+
+class Integer2Roman {
+public:
+
+    string intToRoman(int num) {
+        // 1, 5, 10分界. 1可以重复3次表示3, 第四次需要加在5, 10的左侧表示减1. 增加一个分界
+        // C++中的定义, 看中运算符的优先级, 先结合[], 表示是一个数组, int 表示存储的元素是 int 类型
+        static int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        // M 1000
+        // D 500
+        // C 100
+        // L 50
+        // X 10
+        // V 5
+        // I 1
+        static string strings[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        string romanStr;
+        for (int i = 0; i < sizeof (values) / sizeof (int); i++) {
+            while (num >= values[i]) {
+                num -= values[i]; // 依次相减
+                romanStr.append(strings[i]);
+            }
+        }
+        return romanStr;
+    }
+
+    string betterIntToRoman(int num) {
+        // 将个十百千位上的数字表示完毕, 整除可得倍数
+        //                       1000  2000   3000   
+        static string M[] = {"", "M", "MM", "MMM"}; // 罗马数字在此后使用上划线, 表示扩大1000倍, 然后表示所有的数
+        //                        100  200   300     400   500   600   700    800      900 
+        static string C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        //                        10   20     30     40    50    60    70     80       90  
+        static string X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        //                        1    2      3      4     5     6     7      8        9  
+        static string I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        
+        return M[num/1000] + C[num%1000/100] +X[num%100/10] + I[num%10];
+    }
+
+    void Test() {
+        int num = 3459;
+        cout << "intToRoman: " << intToRoman(num) << endl;
+        cout << "betterIntToRoman: " << betterIntToRoman(num) << endl;
+    }
+};
+
+
 #endif /* LEETCODEMATH_HPP */
 

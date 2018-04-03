@@ -133,6 +133,9 @@ int main(int argc, char** argv) {
 
     PalindromeNumber palindromeNumber;
     palindromeNumber.Test();
+    
+    Integer2Roman integer2Roman;
+    integer2Roman.Test();
 
     // string
     LongestSubstring longestSubstring;
