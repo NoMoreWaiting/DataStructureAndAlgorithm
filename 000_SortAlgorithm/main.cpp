@@ -120,6 +120,9 @@ int main(int argc, char** argv) {
     ThreeSum threeSum;
     threeSum.Test();
     
+    ThreeSumClosest threeSumClosest;
+    threeSumClosest.Test();
+    
     MajorityElement majorityElement;
     majorityElement.Test();
 
