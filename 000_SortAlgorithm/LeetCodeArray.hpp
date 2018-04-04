@@ -19,12 +19,14 @@
 
 #include <algorithm>
 #include <iostream>
+#include <set>
 #include <unordered_map>
 #include <vector>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::set;
 using std::unordered_map;
 using std::vector;
 
@@ -293,6 +295,174 @@ public:
 
         ShowVector<int> (vecTest1);
         ShowVector<int> (vecTest2);
+    }
+};
+
+
+// 15. 3Sum
+// Topics: array, two pointers
+
+/*
+ * Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+ * 
+ * Note: The solution set must not contain duplicate triplets.
+ * 
+ * For example, given array S = [-1, 0, 1, 2, -1, -4],
+ * A solution set is:
+ * [
+ *   [-1, 0, 1],
+ *   [-1, -1, 2]
+ * ]
+ */
+
+class ThreeSum {
+public:
+
+    vector<vector<int> > threeSum(vector<int>& nums) {
+        set<vector<int> > resultSet;
+        vector<vector<int> > resultVec;
+        if (nums.size() < 3)
+            return resultVec;
+
+        std::sort(nums.begin(), nums.end());
+        // 以中间值作为过滤虽然看似比较次数少了, 但逻辑有点乱, 带来了去重问题
+        for (int pivot = 1; pivot < nums.size() - 1; pivot++) {
+            int i = 0, j = nums.size() - 1;
+            int needSum = 0 - nums[pivot];
+            for (; i < pivot && j > pivot;) {
+                int sum = nums[i] + nums[j];
+                if (sum == needSum) {
+                    vector<int> tempVec(3, 0);
+                    tempVec[0] = nums[i];
+                    tempVec[1] = nums[pivot];
+                    tempVec[2] = nums[j];
+                    resultSet.insert(tempVec);
+                    while (i < pivot && nums[i] == tempVec[0])
+                        i++;
+                    while (j > pivot && nums[j] == tempVec[2])
+                        j--;
+                    i++;
+                    j--;
+                }
+                else if (sum > needSum) {
+                    j--; // 排序之后, 坐标向左移动, 和减小
+                }
+                else
+                    i++; // 排序之后, 坐标向右移动, 和增大
+            }
+        }
+
+        if (!resultSet.empty()) {
+            resultVec.insert(resultVec.end(), resultSet.begin(), resultSet.end());
+        }
+
+        return resultVec;
+    }
+
+    vector<vector<int> > betterThreeSum(vector<int>& nums) {
+        std::sort(nums.begin(), nums.end());
+        int n = nums.size();
+        vector<vector<int>> res;
+        for (int i = 0; i < n - 2; i++) { // 从左侧开始向右遍历排序的集合
+            if (i > 0 && (nums[i] == nums[i - 1]))
+                continue;
+            int l = i + 1, r = n - 1;
+            while (l < r) {
+                int sum = nums[i] + nums[l] + nums[r];
+                if (sum < 0)
+                    l++;
+                else if (sum > 0)
+                    r--;
+                else {
+                    res.push_back(vector<int>{nums[i], nums[l], nums[r]});
+                    while (l + 1 < r && nums[l] == nums[l + 1])
+                        l++;
+                    while (l < r - 1 && nums[r] == nums[r - 1])
+                        r--;
+                    l++;
+                    r--;
+                }
+            }
+        }
+
+        return res;
+    }
+
+    vector<vector<int> > anotherThreeSum(vector<int>& num) {
+        vector<vector<int> > res;
+        std::sort(num.begin(), num.end());
+        for (int i = 0; i < num.size(); i++) {
+
+            int target = -num[i];
+            int front = i + 1;
+            int back = num.size() - 1;
+
+            if (target < 0) {
+                break; // num[i] is min, a < b < c, a+b+c =0, if a<0, then b+c >0
+            }
+
+            while (front < back) {
+
+                int sum = num[front] + num[back];
+
+                // Finding answer which start from number num[i]
+                if (sum < target)
+                    front++;
+
+                else if (sum > target)
+                    back--;
+
+                else {
+                    vector<int> triplet(3, 0);
+                    triplet[0] = num[i];
+                    triplet[1] = num[front];
+                    triplet[2] = num[back];
+                    res.push_back(triplet);
+
+                    // Processing duplicates of Number 2
+                    // Rolling the front pointer to the next different number forwards
+                    while (front < back && num[front] == triplet[1]) front++;
+
+                    // Processing duplicates of Number 3
+                    // Rolling the back pointer to the next different number backwards
+                    while (front < back && num[back] == triplet[2]) back--;
+                }
+
+            }
+
+            // Processing duplicates of Number 1
+            while (i + 1 < num.size() && num[i + 1] == num[i])
+                i++;
+        }
+
+        return res;
+    }
+
+    void Test() {
+        int arr[] = {-1, 0, 1, 2, -1, -4};
+        vector<int> srcVec(arr, arr + sizeof (arr) / sizeof (int));
+        vector<vector<int> > threeSumVec = threeSum(srcVec);
+        if (threeSumVec.empty())
+            return;
+
+        cout << "ThreeSum: " << endl;
+        for (vector<vector<int> >::iterator iter = threeSumVec.begin(); iter != threeSumVec.end(); iter++) {
+            ShowVector<int>(*iter);
+        }
+        cout << "<--ThreeSum" << endl;
+
+
+
+        threeSumVec = betterThreeSum(srcVec);
+        if (threeSumVec.empty())
+            return;
+
+        cout << "ThreeSum: " << endl;
+        for (vector<vector<int> >::iterator iter = threeSumVec.begin(); iter != threeSumVec.end(); iter++) {
+            ShowVector<int>(*iter);
+        }
+        cout << "<--ThreeSum" << endl;
+
     }
 };
 

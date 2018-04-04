@@ -114,14 +114,17 @@ int main(int argc, char** argv) {
     PascalTriangle pascalTriangle;
     pascalTriangle.Test();
 
+    ContainerWithMostWater containerWithMostWater;
+    containerWithMostWater.Test();
+    
+    ThreeSum threeSum;
+    threeSum.Test();
+    
     MajorityElement majorityElement;
     majorityElement.Test();
 
     ArrayPartition arrayPartition;
     arrayPartition.Test();
-
-    ContainerWithMostWater containerWithMostWater;
-    containerWithMostWater.Test();
 
     // list
     AddTwoNumbers addTwoNumbers;
@@ -133,10 +136,10 @@ int main(int argc, char** argv) {
 
     PalindromeNumber palindromeNumber;
     palindromeNumber.Test();
-    
+
     Integer2Roman integer2Roman;
     integer2Roman.Test();
-    
+
     Roman2Integer roman2Integer;
     roman2Integer.Test();
 
@@ -152,10 +155,10 @@ int main(int argc, char** argv) {
 
     String2Integer string2Integer;
     string2Integer.Test();
-    
+
     RegularExpressionMatching regularExpressionMatching;
     regularExpressionMatching.Test();
-    
+
     LongestCommonPrefix longestCommonPrefix;
     longestCommonPrefix.Test();
 
