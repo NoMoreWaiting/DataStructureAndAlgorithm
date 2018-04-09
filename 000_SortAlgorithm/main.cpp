@@ -116,13 +116,13 @@ int main(int argc, char** argv) {
 
     ContainerWithMostWater containerWithMostWater;
     containerWithMostWater.Test();
-    
+
     ThreeSum threeSum;
     threeSum.Test();
-    
+
     ThreeSumClosest threeSumClosest;
     threeSumClosest.Test();
-    
+
     MajorityElement majorityElement;
     majorityElement.Test();
 
@@ -164,6 +164,10 @@ int main(int argc, char** argv) {
 
     LongestCommonPrefix longestCommonPrefix;
     longestCommonPrefix.Test();
+
+    LetterCombinationsOfPhoneNumber letterCombinationsOfPhoneNumber;
+    letterCombinationsOfPhoneNumber.Test();
+
 
     return 0;
 }

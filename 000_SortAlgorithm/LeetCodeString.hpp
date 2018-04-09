@@ -423,5 +423,91 @@ public:
     }
 };
 
+
+
+// 17. Letter Combinations of a Phone Number
+// Topics: string, backtracking
+
+/*
+ * Given a digit string, return all possible letter combinations that the number could represent.
+ * 
+ * A mapping of digit to letters (just like on the telephone buttons) is given below.
+ * 
+ * Input:Digit string "23"
+ * Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+ * Note:
+ * Although the above answer is in lexicographical order, your answer could be in any order you want
+ */
+
+class LetterCombinationsOfPhoneNumber {
+public:
+    // 迭代Iterative
+
+    vector<string> letterCombinationsIterative(string digits) {
+        vector<string> res;
+        if (digits.empty())
+            return res;
+
+        static string keys[] = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        res.push_back("");
+        for (int i = 0; i < digits.size(); i++) {
+            int n = res.size();
+            if (digits[i] > '9' || digits[i] < '0')
+                break;
+            string str = keys[digits[i] - '0'];
+            for (int j = 0; j < n; ++j) {
+                string tmp = res.front();
+                res.erase(res.begin());
+                for (int k = 0; k < str.size(); k++) {
+                    res.push_back(tmp + str[k]);
+                }
+            }
+        }
+        return res;
+    }
+
+    // dfs, backtracking 方式
+
+    vector<string> letterCombinationsDFS(string digits) {
+        vector<string> res;
+        if (digits.empty())
+            return res;
+
+        static string keyArr[] = {"0", "1", "abc", "def", "ght", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        static vector<string> dict(keyArr, keyArr + sizeof (keyArr) / sizeof (string));
+        DFSImpl(digits, dict, 0, "", res);
+        return res;
+    }
+
+    void DFSImpl(string digits, vector<string>& dict, int level, string out, vector<string> &res) {
+        if (level == digits.size())
+            res.push_back(out);
+        else {
+            if (digits[level] > '9' || digits[level] < '0')
+                return;
+
+            string str = dict[digits[level] - '0'];
+            for (int i = 0; i < str.size(); i++) {
+                out.push_back(str[i]);
+                DFSImpl(digits, dict, level + 1, out, res);
+                out.pop_back();
+            }
+        }
+    }
+
+    void Test() {
+        string str = "a123456";
+        vector<string> res;
+        cout << "letterCombinationsIterative: " << endl;
+        res = letterCombinationsIterative(str);
+        ShowVector<string>(res);
+
+        cout << "letterCombinationsDFS: " << endl;
+        res = letterCombinationsDFS(str);
+        ShowVector<string>(res);
+    }
+};
+
+
 #endif /* LEETCODESTRING_HPP */
 
