@@ -174,6 +174,8 @@ int main(int argc, char** argv) {
     LetterCombinationsOfPhoneNumber letterCombinationsOfPhoneNumber;
     letterCombinationsOfPhoneNumber.Test();
 
+    ValidParentheses validParentheses;
+    validParentheses.Test();
 
     return 0;
 }

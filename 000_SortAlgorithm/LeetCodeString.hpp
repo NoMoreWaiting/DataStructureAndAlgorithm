@@ -509,5 +509,51 @@ public:
 };
 
 
+// 20. Valid Parentheses
+// Topics: string, stack
+
+/*
+ * Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+ * 
+ * The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+ */
+
+class ValidParentheses {
+public:
+
+    bool isValid(string s) {
+        std::unordered_map<char, char> pareMap;
+        pareMap = {
+            {']', '['},
+            {'}', '{'}
+        };
+        list<char> stack;
+        std::unordered_map<char, char>::iterator iter;
+        pareMap.insert(std::pair<char, char>(')', '('));
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+                stack.push_back(s[i]);
+            }
+            else if (s[i] == ')' || s[i] == ']' || s[i] == '}') {
+                if (*stack.rbegin() == pareMap[s[i]])
+                    stack.pop_back();
+                else
+                    return false;
+            }
+        }
+        if (stack.empty())
+            return true;
+        return false;
+    }
+
+    void Test() {
+        string str = "{geg[geg](}";
+        if (isValid(str))
+            cout << "ValidParentheses: true" << endl;
+        else
+            cout << "ValidParentheses: false" << endl;
+    }
+};
+
 #endif /* LEETCODESTRING_HPP */
 
