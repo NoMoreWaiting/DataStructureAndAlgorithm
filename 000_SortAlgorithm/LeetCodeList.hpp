@@ -18,12 +18,14 @@
 
 #include <algorithm>
 #include <iostream>
+#include <string>
 #include <unordered_map>
 #include <vector>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
 using std::unordered_map;
 using std::vector;
 
@@ -152,6 +154,98 @@ public:
 
 };
 
+
+// 19. Remove Nth Node From End of List
+// Topics: linked list, two pointers
+
+/*
+ * Given a linked list, remove the nth node from the end of list and return its head.
+ * 
+ * For example,
+ *    Given linked list: 1->2->3->4->5, and n = 2.
+ *    After removing the second node from the end, the linked list becomes 1->2->3->5.
+ * Note:
+ * Given n will always be valid.
+ * Try to do this in one pass.
+ */
+
+class RemoveNthNodeFromEnd {
+public:
+    // Definition for singly-linked list.
+
+    struct ListNode {
+        int val;
+        ListNode *next;
+
+        ListNode(int x) : val(x), next(NULL) {
+        }
+    };
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        // 改变值, 使用指针; 改变指针, 使用指针的指针
+        ListNode* preHead = new ListNode(0);
+        preHead->next = head;
+        ListNode* fast = head;
+        ListNode* slow = preHead;
+        for (int i = 0; i < n; i++) {
+            fast = fast->next;
+        }
+        while (NULL != fast) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+
+        slow->next = slow->next->next;
+
+        return preHead->next;
+    }
+
+    ListNode* removeNthFromEnd2LevelPointer(ListNode* head, int n) {
+        ListNode** t1 = &head, *t2 = head; // 改变值, 使用指针; 改变指针, 使用指针的指针
+        for (int i = 1; i < n; ++i) {
+            t2 = t2->next;
+        }
+        while (t2->next != NULL) {
+            t1 = &((*t1)->next);
+            t2 = t2->next;
+        }
+        *t1 = (*t1)->next;
+        return head;
+    }
+
+    ListNode* string2ListNode(string& str) {
+        ListNode*head = new ListNode(0);
+        ListNode * next = head;
+        for (int i = 0; i < str.length(); i++) {
+            char tmp = str[i];
+            const char * pTmp = &tmp;
+            int test = atoi(pTmp);
+            next->next = new ListNode(test);
+            next = next->next;
+        }
+        return head->next;
+    }
+
+    void ShowListNode(ListNode* head) {
+        while (NULL != head) {
+            cout << head->val << " ";
+            head = head->next;
+        }
+        cout << " end" << endl;
+    }
+
+    void Test() {
+        string str = "12";
+        ListNode* head = string2ListNode(str);
+        head = removeNthFromEnd2LevelPointer(head, 1);
+        cout << "removeNthFromEnd: " << endl;
+        ShowListNode(head);
+        head = removeNthFromEnd(head, 1);
+        cout << "removeNthFromEnd: " << endl;
+        ShowListNode(head);
+    }
+
+};
 
 
 #endif /* LEETCODELIST_HPP */
