@@ -128,6 +128,9 @@ int main(int argc, char** argv) {
 
     ArrayPartition arrayPartition;
     arrayPartition.Test();
+    
+    FourSumSolution fourSumSolution;
+    fourSumSolution.Test();
 
     // list
     AddTwoNumbers addTwoNumbers;

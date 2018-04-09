@@ -19,6 +19,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <list>
 #include <set>
 #include <unordered_map>
 #include <vector>
@@ -26,6 +27,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::list;
 using std::set;
 using std::unordered_map;
 using std::vector;
@@ -607,8 +609,115 @@ public:
     }
 };
 
+// 18. 4Sum
+// Topics: array, hash table, two pointers
 
+/*
+ * Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+ * 
+ * Note: The solution set must not contain duplicate quadruplets.
+ * 
+ * For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.
+ * 
+ * A solution set is:
+ * [
+ *   [-1,  0, 0, 1],
+ *   [-2, -1, 1, 2],
+ *   [-2,  0, 0, 2]
+ * ]
+ */
 
+class FourSumSolution {
+public:
+
+    // 降维打击
+    // 玩五阶魔方的思路就是从五阶降到四阶，然后再从四阶降到三阶，最后再按照玩三阶魔方的老套路解决问题。
+
+    vector<vector<int> > FourSum(vector<int> & nums, int target) {
+        vector<vector<int> > vecRes;
+        list<list<int> > listRes = KSum(nums, target, 4);
+        for (list<list<int> >::iterator iter = listRes.begin(); iter != listRes.end(); iter++) {
+            vector<int> tmp(iter->begin(), iter->end());
+            vecRes.push_back(tmp);
+        }
+        return vecRes;
+    }
+
+    list<list<int> > KSum(vector<int> & nums, int target, int k) {
+        list<list<int> > res;
+        if (nums.empty() || nums.size() < k || k < 2)
+            return res;
+        std::sort(nums.begin(), nums.end());
+        list<int> prePath;
+        kSumImpl(nums, target, k, 0, res, prePath);
+        return res;
+
+    }
+
+    void kSumImpl(vector<int> & nums, int target, int k, int start, list<list<int> > &result, list<int> & prePath) {
+        if (nums[start] * k > target || nums[nums.size() - 1] * k < target)
+            return;
+        if (2 == k) {
+            // two sum, two pointer
+            int left = start;
+            int right = nums.size() - 1;
+            while (left < right) {
+                if (nums[left] + nums[right] < target)
+                    left++;
+                else if (nums[left] + nums[right] > target)
+                    right--;
+                else {
+                    // 是经过排序后, 从左往右查找的序列, insert 和 push_back 一定是有序的
+                    list<int> tempList;
+                    tempList.insert(tempList.end(), prePath.begin(), prePath.end());
+                    tempList.push_back(nums[left]);
+                    tempList.push_back(nums[right]);
+                    result.push_back(tempList);
+                    left++;
+                    right--;
+                    while (left < right && nums[left] == nums[left - 1]) // 过滤重复
+                        left++;
+                    while (left < right && nums[right] == nums[right + 1]) // 过滤重复
+                        right--;
+                }
+            }
+        }
+        else {
+            for (int i = start; i < nums.size() - k + 1; i++) {
+                if (i > start && nums[i] == nums[i - 1]) // 去重
+                    continue;
+                if (nums[i] + nums[nums.size() - 1] *(k - 1) < target) // 最大情况也小于target
+                    continue;
+                if (nums[i] * k > target) // 最小情况也大于target
+                    continue;
+                if (nums[i] * k == target) { // 多个数相同的和等于目标
+                    if (nums[i + k - 1] == nums[i]) {
+                        list<int> tempList;
+                        tempList.insert(tempList.end(), prePath.begin(), prePath.end());
+                        tempList.insert(tempList.end(), nums.begin() + i, nums.begin() + i + k);
+                        result.push_back(tempList);
+                    }
+                    break;
+                }
+                prePath.push_back(nums[i]);
+                kSumImpl(nums, target - nums[i], k - 1, i + 1, result, prePath);
+                // prePath.remove(prePath.size() - 1); // java 的用法, 和C++不一致
+                prePath.pop_back(); // backtracking
+            }
+        }
+        return;
+    }
+
+    void Test() {
+        int arr[] = {2, 1, 0, -1};
+        vector<int> nums(arr, arr + sizeof (arr) / sizeof (int));
+        vector<vector<int> > vecRes = FourSum(nums, 2);
+        cout << "FourSum: " << endl;
+        for (int i = 0; i < vecRes.size(); i++) {
+            ShowVector<int>(vecRes[i]);
+        }
+    }
+};
 
 
 
