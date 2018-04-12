@@ -14,11 +14,14 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <vector>
 #include <iostream>
+#include <string>
+#include <vector>
+
 
 using std::cout;
 using std::endl;
+using std::string;
 using std::vector;
 
 
@@ -76,12 +79,40 @@ void Swap(T &a, T&b) {
 // 将src中的值拷入dest从first开始的位置
 
 template<typename T>
-void copyVector(vector<T> & dest, vector<T> & src, int len, int first){
-    for(int i = 0, j = first; i<len; i++, j++){
+void copyVector(vector<T> & dest, vector<T> & src, int len, int first) {
+    for (int i = 0, j = first; i < len; i++, j++) {
         dest[j] = src[i];
     }
 }
 
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode(int x) : val(x), next(NULL) {
+    }
+};
+
+ListNode* string2ListNode(string& str) {
+    ListNode*head = new ListNode(0);
+    ListNode * next = head;
+    for (int i = 0; i < str.length(); i++) {
+        char tmp = str[i];
+        const char * pTmp = &tmp;
+        int test = atoi(pTmp);
+        next->next = new ListNode(test);
+        next = next->next;
+    }
+    return head->next;
+}
+
+void ShowListNode(ListNode* head) {
+    while (NULL != head) {
+        cout << head->val << " ";
+        head = head->next;
+    }
+    cout << " end" << endl;
+}
 
 #endif /* COMMON_H */
 

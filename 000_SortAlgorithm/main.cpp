@@ -139,6 +139,9 @@ int main(int argc, char** argv) {
     RemoveNthNodeFromEnd removeNthNodeFromEnd;
     removeNthNodeFromEnd.Test();
 
+    MergeTwoSortedLists mergeTwoSortedLists;
+    mergeTwoSortedLists.Test();
+
     // math
     ReverseInteger reverseInteger;
     reverseInteger.Test();

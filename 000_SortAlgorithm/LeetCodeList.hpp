@@ -173,14 +173,6 @@ class RemoveNthNodeFromEnd {
 public:
     // Definition for singly-linked list.
 
-    struct ListNode {
-        int val;
-        ListNode *next;
-
-        ListNode(int x) : val(x), next(NULL) {
-        }
-    };
-
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         // 改变值, 使用指针; 改变指针, 使用指针的指针
         ListNode* preHead = new ListNode(0);
@@ -213,27 +205,6 @@ public:
         return head;
     }
 
-    ListNode* string2ListNode(string& str) {
-        ListNode*head = new ListNode(0);
-        ListNode * next = head;
-        for (int i = 0; i < str.length(); i++) {
-            char tmp = str[i];
-            const char * pTmp = &tmp;
-            int test = atoi(pTmp);
-            next->next = new ListNode(test);
-            next = next->next;
-        }
-        return head->next;
-    }
-
-    void ShowListNode(ListNode* head) {
-        while (NULL != head) {
-            cout << head->val << " ";
-            head = head->next;
-        }
-        cout << " end" << endl;
-    }
-
     void Test() {
         string str = "12";
         ListNode* head = string2ListNode(str);
@@ -247,6 +218,57 @@ public:
 
 };
 
+
+// 21. Merge Two Sorted Lists
+// Topics: linked list
+
+/*
+ * Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+ * 
+ * Example:
+ * 
+ * Input: 1->2->4, 1->3->4
+ * Output: 1->1->2->3->4->4
+ */
+
+class MergeTwoSortedLists {
+public:
+
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (NULL == l1 || NULL == l2) {
+            return NULL == l1 ? l2 : l1;
+        }
+        ListNode * head = new ListNode(0);
+        ListNode * temp = head;
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                temp->next = l1;
+                l1 = l1->next;
+            }
+            else {
+                temp->next = l2;
+                l2 = l2->next;
+            }
+            temp = temp->next;
+        }
+
+        temp->next = l1 ? l1 : l2;
+
+        return head->next;
+    }
+
+    void Test() {
+        string str1 = "1245";
+        string str2 = "3589";
+
+        ListNode * l1 = string2ListNode(str1);
+        ListNode * l2 = string2ListNode(str2);
+
+        cout << "MergeTwoSortedLists: " << endl;
+        ShowListNode(mergeTwoLists(l1, l2));
+    }
+
+};
 
 #endif /* LEETCODELIST_HPP */
 
