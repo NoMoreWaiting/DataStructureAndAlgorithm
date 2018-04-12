@@ -6,16 +6,17 @@
       <itemPath>Common.h</itemPath>
       <itemPath>CountSort.hpp</itemPath>
       <itemPath>InsertSort.hpp</itemPath>
-      <itemPath>LeetCodeArray.hpp</itemPath>
-      <itemPath>LeetCodeList.hpp</itemPath>
-      <itemPath>LeetCodeMath.hpp</itemPath>
-      <itemPath>LeetCodeString.hpp</itemPath>
       <itemPath>MergeSort.hpp</itemPath>
       <itemPath>RadixSort.hpp</itemPath>
       <itemPath>SelectSort.hpp</itemPath>
       <itemPath>SwapSort.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="源文件" projectFiles="true">
+      <itemPath>ClassicAlgorithmAnalysis.hpp</itemPath>
+      <itemPath>LeetCodeArray.hpp</itemPath>
+      <itemPath>LeetCodeList.hpp</itemPath>
+      <itemPath>LeetCodeMath.hpp</itemPath>
+      <itemPath>LeetCodeString.hpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles" displayName="资源文件" projectFiles="true">
@@ -47,6 +48,8 @@
         </ccTool>
       </compileType>
       <item path="BucketSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ClassicAlgorithmAnalysis.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Common.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -94,6 +97,8 @@
         </asmTool>
       </compileType>
       <item path="BucketSort.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ClassicAlgorithmAnalysis.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Common.h" ex="false" tool="3" flavor2="0">
       </item>

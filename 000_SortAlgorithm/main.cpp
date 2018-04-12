@@ -34,6 +34,8 @@
 #include "LeetCodeMath.hpp"
 #include "LeetCodeString.hpp"
 
+#include "ClassicAlgorithmAnalysis.hpp"
+
 
 using namespace std;
 
@@ -67,14 +69,11 @@ using namespace std;
  * 
  */
 
-/**
- * main 函数
- * para:    argc
- * para:    argv
- * return:  int, 0 is ok, other is abnormal
- */
-int main(int argc, char** argv) {
 
+
+// 排序算法测试
+
+void SortAlgorithm() {
     TestInsertSort();
     TestBInsertSort();
     TestDoubleInsertSort();
@@ -103,8 +102,14 @@ int main(int argc, char** argv) {
     TestCountSort();
     TestRadixSort();
     TestBucketSort();
+}
 
-    // array
+
+
+// array 
+
+void LeetCodeArray() {
+
     TwoSum twoSum;
     twoSum.Test();
 
@@ -131,8 +136,11 @@ int main(int argc, char** argv) {
 
     FourSumSolution fourSumSolution;
     fourSumSolution.Test();
+}
 
-    // list
+// list
+
+void LeetCodeList() {
     AddTwoNumbers addTwoNumbers;
     addTwoNumbers.Test();
 
@@ -141,8 +149,11 @@ int main(int argc, char** argv) {
 
     MergeTwoSortedLists mergeTwoSortedLists;
     mergeTwoSortedLists.Test();
+}
 
-    // math
+// math
+
+void LeetCodeMath() {
     ReverseInteger reverseInteger;
     reverseInteger.Test();
 
@@ -154,8 +165,11 @@ int main(int argc, char** argv) {
 
     Roman2Integer roman2Integer;
     roman2Integer.Test();
+}
 
-    // string
+// string
+
+void LeetCodeString() {
     LongestSubstring longestSubstring;
     longestSubstring.Test();
 
@@ -179,6 +193,30 @@ int main(int argc, char** argv) {
 
     ValidParentheses validParentheses;
     validParentheses.Test();
+}
+
+void LeetCode() {
+    LeetCodeArray();
+    LeetCodeList();
+    LeetCodeMath();
+    LeetCodeString();
+}
+
+void ClassicAlgorithmAnalysis(){
+    
+}
+
+/**
+ * main 函数
+ * para:    argc
+ * para:    argv
+ * return:  int, 0 is ok, other is abnormal
+ */
+int main(int argc, char** argv) {
+
+    SortAlgorithm();
+    LeetCode();
+    ClassicAlgorithmAnalysis();
 
     return 0;
 }
