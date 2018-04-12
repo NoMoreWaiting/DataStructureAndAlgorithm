@@ -96,7 +96,7 @@ struct ListNode {
 ListNode* string2ListNode(string& str) {
     ListNode*head = new ListNode(0);
     ListNode * next = head;
-    for (int i = 0; i < str.length(); i++) {
+    for (int i = 0; i < (int)str.length(); i++) {
         char tmp = str[i];
         const char * pTmp = &tmp;
         int test = atoi(pTmp);

@@ -202,8 +202,10 @@ void LeetCode() {
     LeetCodeString();
 }
 
-void ClassicAlgorithmAnalysis(){
-    
+void ClassicAlgorithmAnalysis() {
+    FullRangeAlgorithm fullRangeAlgorithm;
+    fullRangeAlgorithm.Test();
+
 }
 
 /**
@@ -214,8 +216,8 @@ void ClassicAlgorithmAnalysis(){
  */
 int main(int argc, char** argv) {
 
-    SortAlgorithm();
-    LeetCode();
+//    SortAlgorithm();
+//    LeetCode();
     ClassicAlgorithmAnalysis();
 
     return 0;

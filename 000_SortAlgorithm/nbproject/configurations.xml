@@ -44,7 +44,7 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
-          <commandLine>-std=c++11</commandLine>
+          <commandLine>-g3 -O0 -std=c++11 -Wall -Werror</commandLine>
         </ccTool>
       </compileType>
       <item path="BucketSort.hpp" ex="false" tool="3" flavor2="0">

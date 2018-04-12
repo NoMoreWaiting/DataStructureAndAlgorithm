@@ -49,7 +49,7 @@ public:
     int lengthOfLongestSubstring(string s) {
         vector<int> dict(256, -1);
         int maxLen = 0, start = -1;
-        for (int i = 0; i != s.length(); i++) {
+        for (int i = 0; i != (int)s.length(); i++) {
             if (dict[s[i]] > start)
                 start = dict[s[i]]; // 如果有重复的字符, 那么start的位置就是上一个重复的字符位置
             dict[s[i]] = i; // 保存每个字符最新出现的位置
@@ -95,7 +95,7 @@ public:
             return s;
         }
         int max_len = 1, min_start = 0;
-        for (int i = 0; i < s.length() - 1; i++) {
+        for (int i = 0; i < (int)s.length() - 1; i++) {
             int len1 = extend(s, i, i);
             int len2 = extend(s, i, i + 1);
             int tempLen = len1 > len2 ? len1 : len2;
@@ -108,7 +108,7 @@ public:
     }
 
     int extend(string & s, int i, int j) {
-        while (i >= 0 && j < s.length()) {
+        while (i >= 0 && j < (int)s.length()) {
             if (s[i] != s[j])
                 break;
             i--;
@@ -123,15 +123,15 @@ public:
         }
 
         int minStart = 0, maxLen = 1;
-        for (int i = 0; i < s.size();) {
-            if (s.size() - i < maxLen / 2)
+        for (int i = 0; i < (int)s.size();) {
+            if ((int)s.size() - i < maxLen / 2)
                 break;
             int j = i, k = i;
-            while (k < s.size() - 1 && s[k + 1] == s[k])
+            while (k < (int)s.size() - 1 && s[k + 1] == s[k])
                 ++k; // 过滤中间的重叠位置. aba , abba. 奇数: j == k, 偶数: k = j + 1;
             i = k + 1; // 下一次循环位置
 
-            while (k < s.size() - 1 && j > 0 && s[k + 1] == s[j - 1]) {
+            while (k < (int)s.size() - 1 && j > 0 && s[k + 1] == s[j - 1]) {
                 j--; // 向两侧扩展
                 k++;
             }
@@ -198,12 +198,12 @@ public:
     }
 
     string betterConvert(string s, int numRows) {
-        if (s.size() <= numRows || numRows < 2)
+        if ((int)s.size() <= numRows || numRows < 2)
             return s;
         string *strings = new string[numRows];
         int row = 0;
         int step = 1;
-        for (int i = 0; i < s.size(); i++) {
+        for (int i = 0; i < (int)s.size(); i++) {
             if (0 == row) {
                 step = 1;
             }
@@ -395,15 +395,15 @@ public:
         }
         string minStr = strs[0];
         int suffix = 0;
-        for (int i = 1; i < strs.size() - 1; i++) {
+        for (int i = 1; i < (int)strs.size() - 1; i++) {
             if (strs[i].length() < minStr.length()) {
                 minStr = strs[i];
                 suffix = i;
             }
         }
         string pre = "";
-        for (int i = 0; i < minStr.length(); i++) {
-            for (int j = 0; j < strs.size(); j++) {
+        for (int i = 0; i < (int)minStr.length(); i++) {
+            for (int j = 0; j < (int)strs.size(); j++) {
                 if (j == suffix) {
                     continue;
                 }
@@ -450,7 +450,7 @@ public:
 
         static string keys[] = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         res.push_back("");
-        for (int i = 0; i < digits.size(); i++) {
+        for (int i = 0; i < (int)digits.size(); i++) {
             int n = res.size();
             if (digits[i] > '9' || digits[i] < '0')
                 break;
@@ -458,7 +458,7 @@ public:
             for (int j = 0; j < n; ++j) {
                 string tmp = res.front();
                 res.erase(res.begin());
-                for (int k = 0; k < str.size(); k++) {
+                for (int k = 0; k < (int)str.size(); k++) {
                     res.push_back(tmp + str[k]);
                 }
             }
@@ -480,14 +480,14 @@ public:
     }
 
     void DFSImpl(string digits, vector<string>& dict, int level, string out, vector<string> &res) {
-        if (level == digits.size())
+        if (level == (int)digits.size())
             res.push_back(out);
         else {
             if (digits[level] > '9' || digits[level] < '0')
                 return;
 
             string str = dict[digits[level] - '0'];
-            for (int i = 0; i < str.size(); i++) {
+            for (int i = 0; i < (int)str.size(); i++) {
                 out.push_back(str[i]);
                 DFSImpl(digits, dict, level + 1, out, res);
                 out.pop_back();
@@ -530,7 +530,7 @@ public:
         list<char> stack;
         std::unordered_map<char, char>::iterator iter;
         pareMap.insert(std::pair<char, char>(')', '('));
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < (int)s.length(); i++) {
             if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
                 stack.push_back(s[i]);
             }

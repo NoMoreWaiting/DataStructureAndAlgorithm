@@ -52,7 +52,7 @@ public:
 
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> tempVec;
-        for (int i = 0; i < nums.size() - 1; i++) {
+        for (int i = 0; i < (int)nums.size() - 1; i++) {
             int surplus = target - nums[i];
             vector<int>::iterator iter = std::find(nums.begin() + i + 1, nums.end(), surplus);
             if (iter != nums.end()) {
@@ -69,10 +69,10 @@ public:
     vector<int> BetterTwoSum(vector<int> & nums, int target) {
         vector<int> tempVec;
         unordered_map<int, int> hash;
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < (int)nums.size(); i++) {
             hash[nums[i]] = i;
         }
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < (int)nums.size(); i++) {
             int surplus = target - nums[i];
             unordered_map<int, int>::iterator iter = hash.find(surplus);
             if (iter != hash.end() and i != iter->second) {
@@ -89,7 +89,7 @@ public:
     vector<int> BetterTwoSum2(vector<int> & nums, int target) {
         vector<int> tempVec;
         unordered_map<int, int> hash;
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < (int)nums.size(); i++) {
             int surplus = target - nums[i];
             unordered_map<int, int>::iterator iter = hash.find(surplus);
             if (iter != hash.end() && i != iter->second) {
@@ -189,6 +189,7 @@ public:
                 return (maxOfLeft + minOfRight) / 2.0;
             }
         }
+        return -1;
     }
 
     void Test() {
@@ -328,7 +329,7 @@ public:
 
         std::sort(nums.begin(), nums.end());
         // 以中间值作为过滤虽然看似比较次数少了, 但逻辑有点乱, 带来了去重问题
-        for (int pivot = 1; pivot < nums.size() - 1; pivot++) {
+        for (int pivot = 1; pivot < (int)nums.size() - 1; pivot++) {
             int i = 0, j = nums.size() - 1;
             int needSum = 0 - nums[pivot];
             for (; i < pivot && j > pivot;) {
@@ -393,7 +394,7 @@ public:
     vector<vector<int> > anotherThreeSum(vector<int>& num) {
         vector<vector<int> > res;
         std::sort(num.begin(), num.end());
-        for (int i = 0; i < num.size(); i++) {
+        for (int i = 0; i < (int)num.size(); i++) {
 
             int target = -num[i];
             int front = i + 1;
@@ -433,7 +434,7 @@ public:
             }
 
             // Processing duplicates of Number 1
-            while (i + 1 < num.size() && num[i + 1] == num[i])
+            while (i + 1 < (int)num.size() && num[i + 1] == num[i])
                 i++;
         }
 
@@ -490,7 +491,7 @@ public:
 
         int sum = 0;
         int res = nums[0] + nums[1] + nums[2];
-        for (int i = 0; i < nums.size() - 2; i++) {
+        for (int i = 0; i < (int)nums.size() - 2; i++) {
             int left = i + 1, right = nums.size() - 1;
             while (left < right) {
                 sum = nums[i] + nums[left] + nums[right];
@@ -534,13 +535,13 @@ public:
     // first version  it's no good
 
     int majorityElement(vector<int> & nums) {
-        for (int i = 0; i < nums.size() / 2 + 1; i++) {
+        for (int i = 0; i < (int)nums.size() / 2 + 1; i++) {
             int times = 0;
-            for (int j = i; j < nums.size(); j++) {
+            for (int j = i; j < (int)nums.size(); j++) {
                 if (nums[i] == nums[j]) {
                     times++;
                 }
-                if (times > nums.size() / 2) {
+                if (times > (int)nums.size() / 2) {
                     return nums[i];
                 }
             }
@@ -592,7 +593,7 @@ public:
     int arrayPairSum(vector<int>& nums) {
         std::sort(nums.begin(), nums.end());
         int sum = 0;
-        for (int i = 0; i < nums.size(); i += 2) {
+        for (int i = 0; i < (int)nums.size(); i += 2) {
             sum += nums[i];
         }
         return sum;
@@ -645,7 +646,7 @@ public:
 
     list<list<int> > KSum(vector<int> & nums, int target, int k) {
         list<list<int> > res;
-        if (nums.empty() || nums.size() < k || k < 2)
+        if (nums.empty() || (int)nums.size() < k || k < 2)
             return res;
         std::sort(nums.begin(), nums.end());
         list<int> prePath;
@@ -683,7 +684,7 @@ public:
             }
         }
         else {
-            for (int i = start; i < nums.size() - k + 1; i++) {
+            for (int i = start; i < (int)nums.size() - k + 1; i++) {
                 if (i > start && nums[i] == nums[i - 1]) // 去重
                     continue;
                 if (nums[i] + nums[nums.size() - 1] *(k - 1) < target) // 最大情况也小于target
@@ -713,7 +714,7 @@ public:
         vector<int> nums(arr, arr + sizeof (arr) / sizeof (int));
         vector<vector<int> > vecRes = FourSum(nums, 2);
         cout << "FourSum: " << endl;
-        for (int i = 0; i < vecRes.size(); i++) {
+        for (int i = 0; i < (int)vecRes.size(); i++) {
             ShowVector<int>(vecRes[i]);
         }
     }

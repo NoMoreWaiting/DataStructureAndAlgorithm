@@ -127,7 +127,7 @@ public:
         // I 1
         static string strings[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         string romanStr;
-        for (int i = 0; i < sizeof (values) / sizeof (int); i++) {
+        for (int i = 0; i < (int)(sizeof (values) / sizeof (int)); i++) {
             while (num >= values[i]) {
                 num -= values[i]; // 依次相减
                 romanStr.append(strings[i]);
