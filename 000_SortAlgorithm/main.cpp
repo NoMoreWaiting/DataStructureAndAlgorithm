@@ -193,12 +193,15 @@ void LeetCodeString() {
 
     ValidParentheses validParentheses;
     validParentheses.Test();
+    
+    GenerateParentheses generateParentheses;
+    generateParentheses.Test();
 }
 
 void LeetCode() {
-    LeetCodeArray();
-    LeetCodeList();
-    LeetCodeMath();
+    //    LeetCodeArray();
+    //    LeetCodeList();
+    //    LeetCodeMath();
     LeetCodeString();
 }
 
@@ -217,8 +220,8 @@ void ClassicAlgorithmAnalysis() {
 int main(int argc, char** argv) {
 
 //    SortAlgorithm();
-//    LeetCode();
-    ClassicAlgorithmAnalysis();
+    LeetCode();
+//    ClassicAlgorithmAnalysis();
 
     return 0;
 }
