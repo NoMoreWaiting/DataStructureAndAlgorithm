@@ -149,6 +149,9 @@ void LeetCodeList() {
 
     MergeTwoSortedLists mergeTwoSortedLists;
     mergeTwoSortedLists.Test();
+
+    MergeKSortedLists mergeKSortedLists;
+    mergeKSortedLists.Test();
 }
 
 // math
@@ -193,16 +196,16 @@ void LeetCodeString() {
 
     ValidParentheses validParentheses;
     validParentheses.Test();
-    
+
     GenerateParentheses generateParentheses;
     generateParentheses.Test();
 }
 
 void LeetCode() {
     //    LeetCodeArray();
-    //    LeetCodeList();
+    LeetCodeList();
     //    LeetCodeMath();
-    LeetCodeString();
+    //    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {
@@ -219,9 +222,9 @@ void ClassicAlgorithmAnalysis() {
  */
 int main(int argc, char** argv) {
 
-//    SortAlgorithm();
+    //    SortAlgorithm();
     LeetCode();
-//    ClassicAlgorithmAnalysis();
+    //    ClassicAlgorithmAnalysis();
 
     return 0;
 }

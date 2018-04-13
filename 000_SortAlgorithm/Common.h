@@ -91,12 +91,16 @@ struct ListNode {
 
     ListNode(int x) : val(x), next(NULL) {
     }
+
+    bool operator<(const ListNode& other) {
+        return val < other.val;
+    }
 };
 
 ListNode* string2ListNode(string& str) {
     ListNode*head = new ListNode(0);
     ListNode * next = head;
-    for (int i = 0; i < (int)str.length(); i++) {
+    for (int i = 0; i < (int) str.length(); i++) {
         char tmp = str[i];
         const char * pTmp = &tmp;
         int test = atoi(pTmp);

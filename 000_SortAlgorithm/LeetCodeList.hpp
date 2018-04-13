@@ -15,9 +15,11 @@
 #define LEETCODELIST_HPP
 
 #include "Common.h"
+#include "LeetCodeString.hpp"
 
 #include <algorithm>
 #include <iostream>
+#include <set>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -25,6 +27,8 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::multiset;
+using std::set;
 using std::string;
 using std::unordered_map;
 using std::vector;
@@ -269,6 +273,112 @@ public:
     }
 
 };
+
+
+// 23. Merge k Sorted Lists
+// Topics: linked list, divide and conquer, heap
+
+/*
+ * Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity
+ */
+
+class MergeKSortedLists {
+public:
+
+    struct compare {
+
+        bool operator()(const ListNode * a, const ListNode * b) {
+            return a->val < b->val;
+        }
+    };
+
+    // 使用优先队列. 每次选出最小值, 下一个入队, 继续排序, 选出最小
+
+    ListNode* mergeKListsQueue(vector<ListNode*>& lists) {
+        if (lists.empty())
+            return NULL;
+
+        multiset<ListNode*, compare> queue;
+
+        ListNode * dummy = new ListNode(0);
+        ListNode * tail = dummy;
+
+        for (ListNode * node : lists) {
+            if (NULL != node)
+                queue.insert(node);
+        }
+
+        while (!queue.empty()) {
+            tail->next = *queue.begin();
+            queue.erase(queue.begin());
+            tail = tail->next;
+            if (NULL != tail->next)
+                queue.insert(tail->next);
+        }
+        return dummy->next;
+    }
+
+    // 使用递归分治, 两两合并
+
+    ListNode* mergeKListsDAC(vector<ListNode*>& lists) {
+        if (lists.empty())
+            return NULL;
+        int len = lists.size();
+        while (len > 1) {
+            // 头尾合并. 也可以遍历的时候取前两个合并, 比较耗时间
+            for (int i = 0; i < len / 2; ++i) {
+                lists[i] = mergeTwoLists(lists[i], lists[len - 1 - i]);
+            }
+            len = (len + 1) / 2;
+        }
+
+        return lists.front();
+    }
+
+    ListNode *mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (NULL == l1)
+            return l2;
+        else if (NULL == l2)
+            return l1;
+
+        if (l1->val <= l2->val) {
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        }
+        else {
+            l2->next = mergeTwoLists(l1, l2->next);
+            return l2;
+        }
+    }
+
+    void Test() {
+        string str1 = "1356";
+        string str2 = "02469";
+        string str3 = "1289";
+        vector<ListNode*> lists;
+        lists.push_back(string2ListNode(str1));
+        lists.push_back(string2ListNode(str2));
+        lists.push_back(string2ListNode(str3));
+
+
+        cout << "mergeKListsQueue: ";
+        ListNode * result = mergeKListsQueue(lists);
+        ShowListNode(result);
+
+        str1 = "1356789";
+        str2 = "02469";
+        str3 = "12589";
+        vector<ListNode*> lists_back;
+        lists_back.push_back(string2ListNode(str1));
+        lists_back.push_back(string2ListNode(str2));
+        lists_back.push_back(string2ListNode(str3));
+
+        cout << "mergeKListsDAC: ";
+        result = mergeKListsDAC(lists_back);
+        ShowListNode(result);
+    }
+};
+
 
 #endif /* LEETCODELIST_HPP */
 
