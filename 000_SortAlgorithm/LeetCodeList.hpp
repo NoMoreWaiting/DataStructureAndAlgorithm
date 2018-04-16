@@ -433,5 +433,101 @@ public:
 };
 
 
+// 25. Reverse Nodes in k-Group
+// Topics: linked list
+
+/*
+ * Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+ * k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
+ * 
+ * Example:
+ * Given this linked list: 1->2->3->4->5
+ * For k = 2, you should return: 2->1->4->3->5
+ * For k = 3, you should return: 3->2->1->4->5
+ * 
+ * Note:
+ * Only constant extra memory is allowed.
+ * You may not alter the values in the list's nodes, only nodes itself may be changed.
+ */
+
+class ReverseNodesInkGroup {
+public:
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if (head == NULL || k == 1) return head;
+        ListNode* origin = new ListNode(0);
+        origin->next = head;
+        ListNode* left = origin, *right = NULL;
+        ListNode* tempHead = origin;
+
+        ListNode * arr[k];
+        int i = 0;
+        while (true) {
+            tempHead = left; // 数组的前一位, 链接下一个循环的数组
+
+            for (i = 0; i < k && tempHead->next; i++) {
+                *(arr + i) = tempHead->next;
+                tempHead = tempHead->next;
+            }
+            if (i < k) {
+                head = origin->next;
+                delete origin;
+                break;
+            }
+
+            // 此时tempHead是数组的最后一位
+            right = tempHead->next; // 数组后的一位, 下一次循环的开头
+
+            for (int num = k - 1; num > 0; num--) {
+                (*(arr + num))->next = *(arr + num - 1);
+            }
+            // 数组元素的第一位指向数组的后一位
+            (*(arr))->next = right;
+            // left指向数组首元素, 其next指向下一个数组未倒序前的首元素
+            left->next = *(arr + k - 1);
+            left = *arr;
+        }
+        return head;
+    }
+
+    // 记住链表的2端位置, 就是记住了整个链表, 后续返回直接当插入就行
+
+    ListNode *anotherReverseKGroup(ListNode *head, int k) {
+        if (head == NULL || k == 1) return head;
+        int num = 0;
+        ListNode *preheader = new ListNode(-1);
+        preheader->next = head;
+        ListNode *cur = preheader, *nex, *pre = preheader;
+        while ((cur = cur->next))
+            num++;
+        while (num >= k) {
+            cur = pre->next;
+            nex = cur->next;
+            for (int i = 1; i < k; ++i) {
+                cur->next = nex->next;
+                nex->next = pre->next;
+                pre->next = nex;
+                nex = cur->next;
+                ShowListNode(preheader);
+            }
+            pre = cur; // 只要记住链表的首尾两端, 那么移动的时候链表就会整体移动(相当于在已反转过的链表中插入剩余的反转节点)
+            num -= k;
+        }
+        return preheader->next;
+    }
+
+    void Test() {
+        string str = "1234567890";
+        ListNode * head = string2ListNode(str);
+        head = reverseKGroup(head, 4);
+        cout << "reverseKGroup: ";
+        ShowListNode(head);
+        head = anotherReverseKGroup(head, 4);
+        cout << "anotherReverseKGroup: ";
+        ShowListNode(head);
+    }
+};
+
+
 #endif /* LEETCODELIST_HPP */
 

@@ -155,6 +155,9 @@ void LeetCodeList() {
     
     SwapNodesInPairs swapNodesInPairs;
     swapNodesInPairs.Test();
+    
+    ReverseNodesInkGroup reverseNodesInkGroup;
+    reverseNodesInkGroup.Test();
 }
 
 // math
