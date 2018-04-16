@@ -136,6 +136,9 @@ void LeetCodeArray() {
 
     FourSumSolution fourSumSolution;
     fourSumSolution.Test();
+
+    RemoveDuplicatesFromSortedArray removeDuplicatesFromSortedArray;
+    removeDuplicatesFromSortedArray.Test();
 }
 
 // list
@@ -152,10 +155,10 @@ void LeetCodeList() {
 
     MergeKSortedLists mergeKSortedLists;
     mergeKSortedLists.Test();
-    
+
     SwapNodesInPairs swapNodesInPairs;
     swapNodesInPairs.Test();
-    
+
     ReverseNodesInkGroup reverseNodesInkGroup;
     reverseNodesInkGroup.Test();
 }
@@ -208,8 +211,8 @@ void LeetCodeString() {
 }
 
 void LeetCode() {
-    //    LeetCodeArray();
-    LeetCodeList();
+    LeetCodeArray();
+    //    LeetCodeList();
     //    LeetCodeMath();
     //    LeetCodeString();
 }
@@ -220,7 +223,7 @@ void ClassicAlgorithmAnalysis() {
 
 }
 
- /**
+/**
  * main 函数
  * para:    argc
  * para:    argv
