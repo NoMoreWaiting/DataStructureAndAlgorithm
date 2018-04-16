@@ -380,5 +380,58 @@ public:
 };
 
 
+// 24. Swap Nodes in Pairs
+// Topics: linked lists
+
+/*
+ * Given a linked list, swap every two adjacent nodes and return its head.
+ * 
+ * Example:
+ * Given 1->2->3->4, you should return the list as 2->1->4->3.
+ * 
+ * Note:
+ * Your algorithm should use only constant extra space.
+ * You may not modify the values in the list's nodes, only nodes itself may be changed.
+ */
+
+
+class SwapNodesInPairs {
+public:
+
+    ListNode* swapPairs(ListNode* head) {
+        // first, check the param
+        if (NULL == head || NULL == head->next)
+            return head;
+
+        ListNode* pre = new ListNode(0);
+        pre->next = head;
+        // notice here: ListNode* first, second; then first is different from second, the pre is ListNode * type, and next is ListNode.
+        ListNode* first = NULL;
+        ListNode* second = NULL;
+        ListNode* origin = pre;
+        while (pre->next && pre->next->next) {
+            first = pre->next;
+            second = pre->next->next;
+
+            first->next = second->next;
+            second->next = first;
+            pre->next = second;
+
+            pre = pre->next->next;
+        }
+        return origin->next;
+    }
+
+    void Test() {
+        string str = "12345";
+        ListNode * node = string2ListNode(str);
+        node = swapPairs(node);
+        cout << "swapPairs: ";
+        ShowListNode(node);
+    }
+
+};
+
+
 #endif /* LEETCODELIST_HPP */
 

@@ -152,6 +152,9 @@ void LeetCodeList() {
 
     MergeKSortedLists mergeKSortedLists;
     mergeKSortedLists.Test();
+    
+    SwapNodesInPairs swapNodesInPairs;
+    swapNodesInPairs.Test();
 }
 
 // math
@@ -214,7 +217,7 @@ void ClassicAlgorithmAnalysis() {
 
 }
 
-/**
+ /**
  * main 函数
  * para:    argc
  * para:    argv
