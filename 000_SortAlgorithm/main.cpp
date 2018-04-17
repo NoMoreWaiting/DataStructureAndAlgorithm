@@ -139,7 +139,7 @@ void LeetCodeArray() {
 
     RemoveDuplicatesFromSortedArray removeDuplicatesFromSortedArray;
     removeDuplicatesFromSortedArray.Test();
-    
+
     RemoveElement removeElement;
     removeElement.Test();
 }
@@ -211,13 +211,17 @@ void LeetCodeString() {
 
     GenerateParentheses generateParentheses;
     generateParentheses.Test();
+
+    ImplementStrStr implementStrStr;
+    implementStrStr.Test();
+    
 }
 
 void LeetCode() {
-    LeetCodeArray();
+    //    LeetCodeArray();
     //    LeetCodeList();
     //    LeetCodeMath();
-    //    LeetCodeString();
+    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {
