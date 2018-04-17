@@ -763,5 +763,69 @@ public:
 };
 
 
+// 27. Remove Element
+// Topics: array, two pointers
+
+/*
+ * Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+ * Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+ * The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+ * 
+ * Example 1:
+ * Given nums = [3,2,2,3], val = 3,
+ * Your function should return length = 2, with the first two elements of nums being 2.
+ * 
+ * It doesn't matter what you leave beyond the returned length.
+ * It doesn't matter what you leave beyond the returned length.
+ */
+
+class RemoveElement {
+public:
+
+    int removeElement(vector<int>& nums, int val) {
+        if (nums.empty())
+            return 0;
+        int id = 0;
+        for (int i = 0; i < int(nums.size()); i++) {
+            if (val != nums[i]) {
+                nums[id++] = nums[i];
+            }
+        }
+        return id;
+    }
+
+    int anotherRemoveElement(vector<int> & nums, int val) {
+        if (nums.empty())
+            return 0;
+        int i = 0, j = int(nums.size()) - 1;
+        // 模仿快速排序, 两头指针, 注意输出剩余多少数据的i. 剩余数目不是下标. 
+        while (j >= i) {
+            while (val != nums[i] && j >= i)
+                i++;
+            while (val == nums[j] && j >= i)
+                j--;
+            if (j > i) {
+                nums[i] += nums[j];
+                nums[j] = nums[i] - nums[j];
+                nums[i] = nums[i] - nums[j];
+            }
+        }
+        return i;
+    }
+
+    void Test() {
+        int arr[] = {3, 3, 3};
+        vector<int> vec(arr, arr + sizeof (arr) / sizeof (int));
+        vector<int> vec_back = vec;
+
+        cout << "removeElement: " << removeElement(vec, 3) << endl;
+        ShowVector<int>(vec);
+
+        cout << "anotherRemoveElement: " << anotherRemoveElement(vec_back, 3) << endl;
+        ShowVector<int>(vec_back);
+    }
+};
+
+
 #endif /* LEETCODEARRAY_H */
 

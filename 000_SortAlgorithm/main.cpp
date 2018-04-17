@@ -139,6 +139,9 @@ void LeetCodeArray() {
 
     RemoveDuplicatesFromSortedArray removeDuplicatesFromSortedArray;
     removeDuplicatesFromSortedArray.Test();
+    
+    RemoveElement removeElement;
+    removeElement.Test();
 }
 
 // list
