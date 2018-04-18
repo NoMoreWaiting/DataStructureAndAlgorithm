@@ -180,6 +180,9 @@ void LeetCodeMath() {
 
     Roman2Integer roman2Integer;
     roman2Integer.Test();
+    
+    DivideTwoIntegers divideTwoIntegers;
+    divideTwoIntegers.Test();
 }
 
 // string
@@ -220,8 +223,8 @@ void LeetCodeString() {
 void LeetCode() {
     //    LeetCodeArray();
     //    LeetCodeList();
-    //    LeetCodeMath();
-    LeetCodeString();
+        LeetCodeMath();
+//    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {
