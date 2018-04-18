@@ -224,13 +224,16 @@ void LeetCodeString() {
     SubstringaWithConcatenationAllWords substringaWithConcatenationAllWords;
     substringaWithConcatenationAllWords.Test();
 
+    LongestValidParentheses longestValidParentheses;
+    longestValidParentheses.Test();
+
 }
 
 void LeetCode() {
-    LeetCodeArray();
+    //    LeetCodeArray();
     //    LeetCodeList();
-    //        LeetCodeMath();
-    //    LeetCodeString();
+    //    LeetCodeMath();
+    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {

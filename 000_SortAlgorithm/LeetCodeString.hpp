@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <climits>
 #include <iostream>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -26,6 +27,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::stack;
 using std::string;
 using std::unordered_map;
 using std::vector;
@@ -803,5 +805,73 @@ public:
 
 };
 
+
+// 32. Longest Valid Parentheses
+// Topics: string, dynamic programming
+
+/*
+ * Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+ * 
+ * Example 1:
+ * Input: "(()"
+ * Output: 2
+ * Explanation: The longest valid parentheses substring is "()"
+ * 
+ * Example 2:
+ * Input: ")()())"
+ * Output: 4
+ * 
+ * Explanation: The longest valid parentheses substring is "()()"
+ */
+class LongestValidParentheses {
+public:
+
+    int longestValidParentheses(string s) {
+        stack<int> stk;
+        stk.push(-1);
+        stk.push(0);
+        int maxL = 0;
+        for (int i = 1; i < int(s.size()); i++) {
+            int t = stk.top();
+            if (s[i] == ')' && s[t] == '(') {
+                stk.pop();
+                maxL = std::max(maxL, i - stk.top()); // 减去正确字符串的首尾下标的前一位
+            }
+            else
+                stk.push(i);
+        }
+        return maxL;
+    }
+
+    // 动态规划的核心在于找到最优子问题的结构和看是否有重复计算的子问题。
+    // 此题中，如果一个字串是最长的合法串，那么它一定能由另一个子串构造。
+    // 此局部最长的合法串与此合法串之前最长的合法串组合, 组成最长字串
+    // 递推, 当当前字串为整个字符串时, 就得到最终的最长合法字串
+    int longestValidParenthesesDP(string s) {
+        vector<int> vec(s.length(), 0);
+        int open = 0;
+        int max = 0;
+        for (int i = 0; i < int(s.length()); i++) {
+            if ('(' == s[i])
+                open++;
+            if (')' == s[i] && open > 0) {
+                vec[i] = 2 + vec[i - 1]; // 2新增一对, vec[i-1] 加上左侧相邻的合法长度
+                // vec[i] 2的倍数, ')' 合法的话, 一定有'('与之匹配, 即 vec[i]
+                if (i - vec[i] > 0) // 这一 ')' 匹配到的合法字串长度 + 之前的最大长度的合法字串长度
+                    vec[i] += vec[i - vec[i]];
+                open--;
+            }
+            if (vec[i] > max)
+                max = vec[i];
+        }
+        return max;
+    }
+
+    void Test() {
+        string str = "((()(())(((";
+        cout << "longestValidParentheses: " << longestValidParentheses(str) << endl;
+        cout << "longestValidParenthesesDP: " << longestValidParenthesesDP(str) << endl;
+    }
+};
 #endif /* LEETCODESTRING_HPP */
 
