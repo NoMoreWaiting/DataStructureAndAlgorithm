@@ -734,5 +734,74 @@ public:
 };
 
 
+// 30. Substring with Concatenation of All Words
+// Topics: string, hash table, two pointers
+
+/*
+ * You are given a string, s, and a list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.
+ * 
+ * Example 1:
+ * Input:
+ *     s = "barfoothefoobarman",
+ *     words = ["foo","bar"]
+ * Output: [0,9]
+ * Explanation: Substrings starting at index 0 and 9 are "barfoor" and "foobar" respectively.
+ * The output order does not matter, returning [9,0] is fine too.
+ *
+ * Example 2:
+ * Input:
+ *     s = "wordgoodstudentgoodword",
+ *     words = ["word","student"]
+ * Output: []
+ */
+
+class SubstringaWithConcatenationAllWords {
+public:
+
+    vector<int> findSubstring(string s, vector<string>& words) {
+        vector<int> indexes;
+        int n = s.length(), num = words.size();
+        if (n <= 0 || num <= 0)
+            return indexes;
+        int len = words[0].length();
+        unordered_map<string, int> counts;
+        for (string word : words)
+            counts[word]++;
+
+
+        // 从头往后, 依次遍历去头字符
+        for (int i = 0; i < n - num * len + 1; i++) {
+            unordered_map<string, int> seen;
+            int j = 0;
+            for (; j < num; j++) {
+                // 从去头字符串中, 依次去len长度的字串, 如果 words 中的单词长度不固定, 那么此题复杂度飙升
+                string word = s.substr(i + j * len, len);
+                if (counts.find(word) != counts.end()) {
+                    seen[word]++;
+
+                    if (seen[word] > counts[word])
+                        // 在一个连续串中, 所有的words只会出现一次(重复的计累计数)
+                        break;
+                }
+                else
+                    break; // 字串是连续的, 如果中间有一个字串不符合, 那就break
+            }
+            if (j == num)
+                indexes.push_back(i);
+        }
+        return indexes;
+    }
+
+    void Test() {
+        string str = "goodfoodfoodgoodfood";
+        string wordsArr[] = {"good", "food", "food"};
+        vector<string> words(wordsArr, wordsArr + sizeof (wordsArr) / sizeof (string));
+        cout << "findSubstring: " << endl;
+        vector<int> result = findSubstring(str, words);
+        ShowVector<int>(result);
+    }
+
+};
+
 #endif /* LEETCODESTRING_HPP */
 

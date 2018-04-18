@@ -180,7 +180,7 @@ void LeetCodeMath() {
 
     Roman2Integer roman2Integer;
     roman2Integer.Test();
-    
+
     DivideTwoIntegers divideTwoIntegers;
     divideTwoIntegers.Test();
 }
@@ -217,14 +217,17 @@ void LeetCodeString() {
 
     ImplementStrStr implementStrStr;
     implementStrStr.Test();
-    
+
+    SubstringaWithConcatenationAllWords substringaWithConcatenationAllWords;
+    substringaWithConcatenationAllWords.Test();
+
 }
 
 void LeetCode() {
     //    LeetCodeArray();
     //    LeetCodeList();
-        LeetCodeMath();
-//    LeetCodeString();
+    //        LeetCodeMath();
+    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {
