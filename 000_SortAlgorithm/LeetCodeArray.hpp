@@ -827,5 +827,71 @@ public:
 };
 
 
+// 31. Next Permutation
+// Topics: array
+
+/*
+ * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+ * If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
+ * The replacement must be in-place and use only constant extra memory.
+ * 
+ * Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.
+ * 
+ * 1,2,3 → 1,3,2
+ * 3,2,1 → 1,2,3
+ * 1,1,5 → 1,5,1
+ */
+
+class NextPermutation {
+public:
+    // this is the key method in all range problem
+
+    void nextPermutation(vector<int>& nums) {
+        int size = int(nums.size());
+        if (size < 2)
+            return;
+        int right = nums.size() - 1;
+        while (right > 0) {
+            if (nums[right - 1] < nums[right])
+                break;
+            right--;
+        }
+        if (0 == right) {
+            std::reverse(nums.begin(), nums.end());
+        }
+        else {
+            int left = right - 1;
+            int big = nums.size() - 1;
+            while (big > right) {
+                if (nums[big] > nums[left])
+                    break;
+                big--;
+            }
+            nums[big] += nums[left];
+            nums[left] = nums[big] - nums[left];
+            nums[big] = nums[big] - nums[left];
+            std::reverse(nums.begin() + right, nums.end());
+        }
+    }
+
+    void Test() {
+        int arr1[] = {1, 2, 3};
+        int arr2[] = {3, 2, 1};
+        int arr3[] = {1, 1, 5};
+        vector<int> vec1(arr1, arr1 + sizeof (arr1) / sizeof (int));
+        vector<int> vec2(arr2, arr2 + sizeof (arr2) / sizeof (int));
+        vector<int> vec3(arr3, arr3 + sizeof (arr3) / sizeof (int));
+
+        cout << "nextPermutation: " << endl;
+        nextPermutation(vec1);
+        nextPermutation(vec2);
+        nextPermutation(vec3);
+
+        ShowVector<int>(vec1);
+        ShowVector<int>(vec2);
+        ShowVector<int>(vec3);
+    }
+};
+
 #endif /* LEETCODEARRAY_H */
 

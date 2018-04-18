@@ -142,6 +142,9 @@ void LeetCodeArray() {
 
     RemoveElement removeElement;
     removeElement.Test();
+
+    NextPermutation nextPermutation;
+    nextPermutation.Test();
 }
 
 // list
@@ -224,10 +227,10 @@ void LeetCodeString() {
 }
 
 void LeetCode() {
-    //    LeetCodeArray();
+    LeetCodeArray();
     //    LeetCodeList();
     //        LeetCodeMath();
-    LeetCodeString();
+    //    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {
