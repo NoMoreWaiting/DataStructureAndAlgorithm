@@ -1093,6 +1093,61 @@ public:
     }
 };
 
+// 35. Search Insert Position
+// Topics: array, binary search
+
+/*
+ * Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+ * 
+ * You may assume no duplicates in the array.
+ * 
+ * Example 1:
+ * Input: [1,3,5,6], 5
+ * Output: 2
+ * 
+ * Example 2:
+ * Input: [1,3,5,6], 0
+ * Output: 0
+ */
+class SearchInsertPosition {
+public:
+
+    int searchInsert(vector<int>& nums, int target) {
+        int low = 0, high = int(nums.size());
+        while (low < high) {
+            int mid = low + (high - low) / 2; // (low+right)/2 , if num is two big, could be overflow
+            if (nums[mid] >= target)
+                high = mid; // 插入的位置在当前位置的前面.
+            else
+                low = mid + 1;
+        }
+        return low;
+    }
+
+    int anotherSearchInsert(vector<int>& nums, int target) {
+        int low = 0, high = int(nums.size()) - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] > target)
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+        return low;
+    }
+
+    void Test() {
+        int arr[] = {1, 3, 5, 6};
+        vector<int> vec(arr, arr + sizeof (arr) / sizeof (int));
+        cout << "searchInsert: " << searchInsert(vec, 5) << endl;
+        cout << "anotherSearchInsert: " << anotherSearchInsert(vec, 5) << endl;
+
+
+    }
+};
+
 
 #endif /* LEETCODEARRAY_H */
 

@@ -151,6 +151,9 @@ void LeetCodeArray() {
 
     SearchForARange searchForARange;
     searchForARange.Test();
+
+    SearchInsertPosition searchInsertPosition;
+    searchInsertPosition.Test();
 }
 
 // list
