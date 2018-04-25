@@ -145,6 +145,9 @@ void LeetCodeArray() {
 
     NextPermutation nextPermutation;
     nextPermutation.Test();
+
+    SearchInRotatedSortedArray searchInRotatedSortedArray;
+    searchInRotatedSortedArray.Test();
 }
 
 // list
@@ -230,10 +233,10 @@ void LeetCodeString() {
 }
 
 void LeetCode() {
-    //    LeetCodeArray();
+    LeetCodeArray();
     //    LeetCodeList();
     //    LeetCodeMath();
-    LeetCodeString();
+    //    LeetCodeString();
 }
 
 void ClassicAlgorithmAnalysis() {

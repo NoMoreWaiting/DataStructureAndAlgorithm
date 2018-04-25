@@ -893,5 +893,104 @@ public:
     }
 };
 
+
+// 33. Search in Rotated Sorted Array
+// Topics: array, binary search
+
+/*
+ * Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+ * (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+ * 
+ * You are given a target value to search. If found in the array return its index, otherwise return -1.
+ * 
+ * You may assume no duplicate exists in the array.
+ * Your algorithm's runtime complexity must be in the order of O(log n).
+ * 
+ * Example 1:
+ * Input: nums = [4,5,6,7,0,1,2], target = 0
+ * Output: 4
+ * 
+ * Example 2:
+ * Input: nums = [4,5,6,7,0,1,2], target = 3
+ * Output: -1
+ */
+
+class SearchInRotatedSortedArray {
+public:
+
+    int search(vector<int>& nums, int target) {
+        if (nums.empty())
+            return -1;
+
+        int left = 0, right = int(nums.size()) - 1, mid = 0;
+        while (left < right) {
+            mid = (left + right) / 2;
+            if (nums[mid] > nums[right]) {
+                left = mid + 1; // 注意这里需要+1, 不然那会无限循环(因为 2/2=1, 3/2 =1, 无法区分)
+            }
+            else {
+                right = mid;
+            }
+        }
+
+        int low = left; // left = mid+1, 保证元素是最大之后的最小元素
+        left = 0;
+        right = int(nums.size()) - 1;
+        int real_mid = 0;
+
+        // 用表面数组下标控制边界, 用实际数组的大小找到元素
+        while (left <= right) {
+            mid = (left + right) / 2;
+            real_mid = (mid + low) % (int(nums.size())); // 循环数组用法. 余数
+            if (nums[real_mid] == target) {
+                return real_mid;
+            }
+            else if (nums[real_mid] > target) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    int anotherSearch(vector<int>& nums, int target) {
+        int lo = 0;
+        int hi = nums.size() - 1;
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            if (nums[mid] == target) return mid;
+
+            // 直接使用实际的数组下标来操作
+            if (nums[lo] <= nums[mid]) {
+                if (target >= nums[lo] && target < nums[mid]) {
+                    hi = mid - 1;
+                }
+                else {
+                    lo = mid + 1;
+                }
+            }
+            else {
+                if (target > nums[mid] && target <= nums[hi]) {
+                    lo = mid + 1;
+                }
+                else {
+                    hi = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+    void Test() {
+        int arr[] = {4};
+        vector<int> vec(arr, arr + sizeof (arr) / sizeof (int));
+        cout << "SearchInRotatedSortedArray: " << search(vec, 4) << endl;
+        cout << "anotherSearch: " << anotherSearch(vec, 4) << endl;
+    }
+};
+
+
 #endif /* LEETCODEARRAY_H */
 
