@@ -148,6 +148,9 @@ void LeetCodeArray() {
 
     SearchInRotatedSortedArray searchInRotatedSortedArray;
     searchInRotatedSortedArray.Test();
+
+    SearchForARange searchForARange;
+    searchForARange.Test();
 }
 
 // list

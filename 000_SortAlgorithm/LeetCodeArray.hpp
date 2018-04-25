@@ -992,5 +992,107 @@ public:
 };
 
 
+// 34. Search for a Range
+// Topics: array, binary search
+
+/*
+ * Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+ * 
+ * Your algorithm's runtime complexity must be in the order of O(log n).
+ * If the target is not found in the array, return [-1, -1].
+ * 
+ * Example 1:
+ * Input: nums = [5,7,7,8,8,10], target = 8
+ * Output: [3,4]
+ * 
+ * Example 2:
+ * Input: nums = [5,7,7,8,8,10], target = 6
+ * Output: [-1,-1]
+ */
+
+class SearchForARange {
+public:
+
+    vector<int> searchRange(vector<int>& nums, int target) {
+
+        int size = nums.size();
+        int left = 0, right = size - 1;
+        vector<int> res(2, -1);
+        if (nums.empty()) {
+            return res;
+        }
+
+        // 第一次查找 下界
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid;
+            }
+        }
+        if (nums[left] != target)
+            return res;
+        else
+            res[0] = left;
+
+        // 第二次查找 上界. left 不清零
+        right = size - 1;
+        while (left < right) {
+            int mid = (left + right) / 2 + 1; // 保证left偏向right
+            if (nums[mid] > target) {
+                right = mid - 1; // >
+            }
+            else {
+                left = mid; // <=
+            }
+        }
+        res[1] = right;
+        return res;
+    }
+
+    vector<int> searchRangeLowerBound(vector<int>& nums, int target) {
+        if (nums.empty()) {
+            return {-1, -1};
+        }
+        int idx1 = lower_bound(nums, target);
+
+        // 如果找到的数是有一个重复的, 那么-1 ok, 如果没有重复, 那么是同一个, 如果多个则显示的同样值的范围
+        int idx2 = lower_bound(nums, target + 1) - 1;
+        if (idx1 < int(nums.size()) && nums[idx1] == target)
+            return {idx1, idx2};
+        else
+            return {-1, -1};
+    }
+
+    // 找到第一个不小于target的数的位置
+
+    int lower_bound(vector<int>& nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        while (l <= r) {
+            int mid = (r - l) / 2 + l;
+            if (nums[mid] < target)
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
+        return l;
+    }
+
+    void Test() {
+        int arr[] = {5, 6, 6, 6, 7, 8, 8, 10};
+        vector<int> vec(arr, arr + sizeof (arr) / sizeof (int));
+        vector<int> result = searchRange(vec, 6);
+        cout << "SearchForARange: " << endl;
+        ShowVector<int>(result);
+        cout << "注意找的是这个数在数组内的范围" << endl;
+        result = searchRangeLowerBound(vec, 6);
+        cout << "searchRangeLowerBound: " << endl;
+        ShowVector<int>(result);
+    }
+};
+
+
 #endif /* LEETCODEARRAY_H */
 
