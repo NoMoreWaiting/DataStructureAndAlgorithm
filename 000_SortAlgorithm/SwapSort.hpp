@@ -445,7 +445,7 @@ void QuickSort3HoleNoRecursion(vector<T>&vec, int left, int right) {
     st.push(left);
     int maxSize = 0;
     while (!st.empty()) {
-        if (st.size() > maxSize) {
+        if (int(st.size()) > maxSize) {
             maxSize = st.size();
             cout << "max stack size: " << maxSize << endl;
         }

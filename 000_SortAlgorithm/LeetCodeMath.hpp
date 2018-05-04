@@ -76,7 +76,7 @@ public:
  *
  * Some hints:
  * Could negative integers be palindromes? (ie, -1)
- * If you are thinking of converting the integer to string, note the restriction of using extra space.
+ * If you are thinking of converting the integer to std::string, note the restriction of using extra space.
  * You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", you know that the reversed integer might overflow. How would you handle such case?
  * There is a more generic way of solving this problem.
  */
@@ -104,7 +104,7 @@ public:
 
 
 // 12. Integer to Roman
-// Topics: math, string
+// Topics: math, std::string
 
 /*
  * Given an integer, convert it to a roman numeral.
@@ -114,7 +114,7 @@ public:
 class Integer2Roman {
 public:
 
-    string intToRoman(int num) {
+    std::string intToRoman(int num) {
         // 1, 5, 10分界. 1可以重复3次表示3, 第四次需要加在5, 10的左侧表示减1. 增加一个分界
         // C++中的定义, 看中运算符的优先级, 先结合[], 表示是一个数组, int 表示存储的元素是 int 类型
         static int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
@@ -125,8 +125,8 @@ public:
         // X 10
         // V 5
         // I 1
-        static string strings[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-        string romanStr;
+        static std::string strings[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        std::string romanStr;
         for (int i = 0; i < (int) (sizeof (values) / sizeof (int)); i++) {
             while (num >= values[i]) {
                 num -= values[i]; // 依次相减
@@ -136,16 +136,16 @@ public:
         return romanStr;
     }
 
-    string betterIntToRoman(int num) {
+    std::string betterIntToRoman(int num) {
         // 将个十百千位上的数字表示完毕, 整除可得倍数
         //                       1000  2000   3000   
-        static string M[] = {"", "M", "MM", "MMM"}; // 罗马数字在此后使用上划线, 表示扩大1000倍, 然后表示所有的数
+        static std::string M[] = {"", "M", "MM", "MMM"}; // 罗马数字在此后使用上划线, 表示扩大1000倍, 然后表示所有的数
         //                        100  200   300     400   500   600   700    800      900 
-        static string C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        static std::string C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
         //                        10   20     30     40    50    60    70     80       90  
-        static string X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        static std::string X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
         //                        1    2      3      4     5     6     7      8        9  
-        static string I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        static std::string I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 
         return M[num / 1000] + C[num % 1000 / 100] + X[num % 100 / 10] + I[num % 10];
     }
@@ -158,7 +158,7 @@ public:
 };
 
 // 13. Roman to Integer
-// Topics: math, string
+// Topics: math, std::string
 
 /*
  * Given a roman numeral, convert it to an integer.
@@ -169,7 +169,7 @@ class Roman2Integer {
 public:
     // case from left
 
-    int romanToIntLeft(string s) {
+    int romanToIntLeft(std::string s) {
         static unordered_map<char, int> T = {
             {'I', 1},
             {'V', 5},
@@ -198,7 +198,7 @@ public:
 
     // case from right
 
-    int romanToIntRight(string s) {
+    int romanToIntRight(std::string s) {
         static unordered_map<char, int> T = {
             {'I', 1},
             {'V', 5},
@@ -224,7 +224,7 @@ public:
     }
 
     void Test() {
-        string s = "D";
+        std::string s = "D";
         cout << "romanToIntLeft: " << romanToIntLeft(s) << endl;
         cout << "romanToIntRight: " << romanToIntRight(s) << endl;
     }

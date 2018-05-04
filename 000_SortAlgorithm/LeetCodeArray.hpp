@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <iostream>
 #include <list>
+#include <numeric> // accumulate
 #include <set>
 #include <unordered_map>
 #include <vector>
@@ -485,7 +486,7 @@ public:
 
     int threeSumClosest(vector<int>& nums, int target) {
         if (nums.size() <= 3) {
-            return std::accumulate(nums.begin(), nums.end(), 0);
+            return accumulate(nums.begin(), nums.end(), 0);
         }
         std::sort(nums.begin(), nums.end());
 

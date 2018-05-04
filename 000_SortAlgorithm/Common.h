@@ -44,7 +44,7 @@ void ShowArr(const int arr[], int len) {
 
 template <typename T>
 void ShowVector(vector<T> & vec) {
-    for (int i = 0; i < vec.size(); i++) {
+    for (int i = 0; i < int(vec.size()); i++) {
         if (0 != i) {
             cout << ", ";
         }
