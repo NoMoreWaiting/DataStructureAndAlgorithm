@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <climits>
 #include <iostream>
+#include <list>
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -27,6 +28,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::list;
 using std::stack;
 using std::string;
 using std::unordered_map;
@@ -49,7 +51,7 @@ using std::vector;
 class LongestSubstring {
 public:
 
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(std::string s) {
         vector<int> dict(256, -1);
         int maxLen = 0, start = -1;
         for (int i = 0; i != (int) s.length(); i++) {
@@ -62,17 +64,17 @@ public:
     }
 
     void Test() {
-        string str = "adggdwegdasga";
+        std::string str = "adggdwegdasga";
         cout << "字符串: " << str << ", 最长字串长度: " << lengthOfLongestSubstring(str) << endl;
     }
 };
 
 
 // 5. Longest Palindromic Substring
-// topics: string, dynamic programming
+// topics: std::string, dynamic programming
 
 /*
- * Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+ * Given a std::string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
  * 
  * Example:
  * Input: "babad"
@@ -87,7 +89,7 @@ public:
 class LongestPalindromicSubstring {
 public:
 
-    string longestPalindrome(string s) {
+    std::string longestPalindrome(std::string s) {
         /*
          * dp[j][i] = true                              i = j
          *          = str[i] == str[j]                  i - j = 1
@@ -110,7 +112,7 @@ public:
         return s.substr(min_start, max_len);
     }
 
-    int extend(string & s, int i, int j) {
+    int extend(std::string & s, int i, int j) {
         while (i >= 0 && j < (int) s.length()) {
             if (s[i] != s[j])
                 break;
@@ -120,7 +122,7 @@ public:
         return j - i - 2 + 1;
     }
 
-    string longestPalindrome1(string s) {
+    std::string longestPalindrome1(std::string s) {
         if (s.length() < 2) {
             return s;
         }
@@ -174,12 +176,12 @@ public:
 class ZigZagConversion {
 public:
 
-    string convert(string s, int numRows) {
+    std::string convert(std::string s, int numRows) {
         int size = s.size();
         if (size <= numRows || numRows < 2)
             return s;
         int totalCircu = numRows + (numRows - 2);
-        string *strings = new string[numRows];
+        std::string *strings = new std::string[numRows];
         for (int i = 0; i < size; i++) {
             int nowTotalPos = i % totalCircu;
             int nowRow = 0;
@@ -193,17 +195,17 @@ public:
             strings[nowRow].push_back(s[i]);
             cout << strings[nowRow] << endl;
         }
-        string result;
+        std::string result;
         for (int i = 0; i < numRows; i++) {
             result.append(strings[i]);
         }
         return result;
     }
 
-    string betterConvert(string s, int numRows) {
+    std::string betterConvert(std::string s, int numRows) {
         if ((int) s.size() <= numRows || numRows < 2)
             return s;
-        string *strings = new string[numRows];
+        std::string *strings = new std::string[numRows];
         int row = 0;
         int step = 1;
         for (int i = 0; i < (int) s.size(); i++) {
@@ -216,7 +218,7 @@ public:
             strings[row].push_back(s[i]);
             row += step;
         }
-        string result;
+        std::string result;
         for (int i = 0; i < numRows; i++) {
             result.append(strings[i]);
         }
@@ -224,7 +226,7 @@ public:
     }
 
     void Test() {
-        string testStr = "ABCDEF";
+        std::string testStr = "ABCDEF";
         cout << "TestZigZagConversion: " << convert(testStr, 4) << endl;
         cout << "TestZigZagConversion: " << betterConvert(testStr, 4) << endl;
     }
@@ -251,7 +253,7 @@ public:
 class String2Integer {
 public:
 
-    int myAtoi(string str) {
+    int myAtoi(std::string str) {
         if ("" == str) {
             return 0;
         }
@@ -289,7 +291,7 @@ public:
     }
 
     void Test() {
-        string str = "9223372036854775809";
+        std::string str = "9223372036854775809";
         cout << "String2Integer: " << myAtoi(str) << endl;
     }
 };
@@ -320,7 +322,7 @@ class RegularExpressionMatching {
 public:
     static const int FRONT = -1;
 
-    bool isMatchBackTrace(string s, string p) {
+    bool isMatchBackTrace(std::string s, std::string p) {
         // this is too hard
         return myMatch(s, s.length() - 1, p, p.length() - 1);
     }
@@ -328,7 +330,7 @@ public:
     // 递归, 回溯思想
     // 从后往前匹配, 遇到*时前方必有一个字符, 不需要考虑越界问题
 
-    bool myMatch(string& s, int i, string& p, int j) {
+    bool myMatch(std::string& s, int i, std::string& p, int j) {
         if (j == FRONT) {
             if (i == FRONT)
                 return true; // 两个字符串都走完时, 匹配完成, 否则不匹配
@@ -349,7 +351,7 @@ public:
 
     // DP 动态规划. 二维bool数组寻找真值匹配路径
 
-    bool isMatchDP(string s, string p) {
+    bool isMatchDP(std::string s, std::string p) {
         int m = s.length(), n = p.length();
         // 加入空串
         vector < vector<bool> > dp(m + 1, vector<bool> (n + 1, false));
@@ -365,8 +367,8 @@ public:
     }
 
     void Test() {
-        string target = "aa";
-        string source = "aa";
+        std::string target = "aa";
+        std::string source = "aa";
         if (isMatchBackTrace(target, source))
             cout << "isMatchBackTrace: true" << endl;
         else
@@ -390,13 +392,13 @@ public:
 class LongestCommonPrefix {
 public:
 
-    string longestCommonPrefix(vector<string>& strs) {
+    std::string longestCommonPrefix(vector<std::string>& strs) {
         if (strs.empty())
             return "";
         if (strs.size() == 1) {
             return strs[0];
         }
-        string minStr = strs[0];
+        std::string minStr = strs[0];
         int suffix = 0;
         for (int i = 1; i < (int) strs.size() - 1; i++) {
             if (strs[i].length() < minStr.length()) {
@@ -404,7 +406,7 @@ public:
                 suffix = i;
             }
         }
-        string pre = "";
+        std::string pre = "";
         for (int i = 0; i < (int) minStr.length(); i++) {
             for (int j = 0; j < (int) strs.size(); j++) {
                 if (j == suffix) {
@@ -420,8 +422,8 @@ public:
     }
 
     void Test() {
-        string arrs[] = {"a", "b"};
-        vector<string> vecStr(arrs, arrs + sizeof (arrs) / sizeof (string));
+        std::string arrs[] = {"a", "b"};
+        vector<std::string> vecStr(arrs, arrs + sizeof (arrs) / sizeof (std::string));
         cout << "longestCommonPrefix: " << longestCommonPrefix(vecStr) << endl;
     }
 };
@@ -446,20 +448,20 @@ class LetterCombinationsOfPhoneNumber {
 public:
     // 迭代Iterative
 
-    vector<string> letterCombinationsIterative(string digits) {
-        vector<string> res;
+    vector<std::string> letterCombinationsIterative(std::string digits) {
+        vector<std::string> res;
         if (digits.empty())
             return res;
 
-        static string keys[] = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        static std::string keys[] = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         res.push_back("");
         for (int i = 0; i < (int) digits.size(); i++) {
             int n = res.size();
             if (digits[i] > '9' || digits[i] < '0')
                 break;
-            string str = keys[digits[i] - '0'];
+            std::string str = keys[digits[i] - '0'];
             for (int j = 0; j < n; ++j) {
-                string tmp = res.front();
+                std::string tmp = res.front();
                 res.erase(res.begin());
                 for (int k = 0; k < (int) str.size(); k++) {
                     res.push_back(tmp + str[k]);
@@ -471,25 +473,25 @@ public:
 
     // dfs, backtracking 方式
 
-    vector<string> letterCombinationsDFS(string digits) {
-        vector<string> res;
+    vector<std::string> letterCombinationsDFS(std::string digits) {
+        vector<std::string> res;
         if (digits.empty())
             return res;
 
-        static string keyArr[] = {"0", "1", "abc", "def", "ght", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        static vector<string> dict(keyArr, keyArr + sizeof (keyArr) / sizeof (string));
+        static std::string keyArr[] = {"0", "1", "abc", "def", "ght", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        static vector<std::string> dict(keyArr, keyArr + sizeof (keyArr) / sizeof (std::string));
         DFSImpl(digits, dict, 0, "", res);
         return res;
     }
 
-    void DFSImpl(string digits, vector<string>& dict, int level, string out, vector<string> &res) {
+    void DFSImpl(std::string digits, vector<std::string>& dict, int level, std::string out, vector<std::string> &res) {
         if (level == (int) digits.size())
             res.push_back(out);
         else {
             if (digits[level] > '9' || digits[level] < '0')
                 return;
 
-            string str = dict[digits[level] - '0'];
+            std::string str = dict[digits[level] - '0'];
             for (int i = 0; i < (int) str.size(); i++) {
                 out.push_back(str[i]);
                 DFSImpl(digits, dict, level + 1, out, res);
@@ -499,15 +501,15 @@ public:
     }
 
     void Test() {
-        string str = "a123456";
-        vector<string> res;
+        std::string str = "a123456";
+        vector<std::string> res;
         cout << "letterCombinationsIterative: " << endl;
         res = letterCombinationsIterative(str);
-        ShowVector<string>(res);
+        ShowVector<std::string>(res);
 
         cout << "letterCombinationsDFS: " << endl;
         res = letterCombinationsDFS(str);
-        ShowVector<string>(res);
+        ShowVector<std::string>(res);
     }
 };
 
@@ -524,13 +526,13 @@ public:
 class ValidParentheses {
 public:
 
-    bool isValid(string s) {
+    bool isValid(std::string s) {
         std::unordered_map<char, char> pareMap;
         pareMap = {
             {']', '['},
             {'}', '{'}
         };
-        list<char> stack;
+        std::list<char> stack;
         std::unordered_map<char, char>::iterator iter;
         pareMap.insert(std::pair<char, char>(')', '('));
         for (int i = 0; i < (int) s.length(); i++) {
@@ -550,7 +552,7 @@ public:
     }
 
     void Test() {
-        string str = "{geg[geg](}";
+        std::string str = "{geg[geg](}";
         if (isValid(str))
             cout << "ValidParentheses: true" << endl;
         else
@@ -583,8 +585,8 @@ public:
         int remain; // 剩余可入队的"("
     };
 
-    vector<string> generateParentheses(int n) {
-        vector<string> result;
+    vector<std::string> generateParentheses(int n) {
+        vector<std::string> result;
         Control con;
         con.left = 0;
         con.remain = n;
@@ -592,7 +594,7 @@ public:
         return result;
     }
 
-    void Impl(string pre, vector<string> &result, Control con) {
+    void Impl(std::string pre, vector<std::string> &result, Control con) {
         if (con.remain == 0 && con.left == 1) {
             result.push_back(pre + ")");
         }
@@ -616,8 +618,8 @@ public:
         }
     }
 
-    vector<string> betterGenerateParentheses(int n) {
-        vector<string> result;
+    vector<std::string> betterGenerateParentheses(int n) {
+        vector<std::string> result;
         helper(result, "", n, n);
         return result;
     }
@@ -629,7 +631,7 @@ public:
      * @param left    剩余多少'('
      * @param right   剩余多少')'
      */
-    void helper(vector<string> &result, string pre, int left, int right) {
+    void helper(vector<std::string> &result, std::string pre, int left, int right) {
         if (0 == left && 0 == right) {
             result.push_back(pre);
             return;
@@ -641,13 +643,13 @@ public:
     }
 
     void Test() {
-        vector<string> result = generateParentheses(3);
+        vector<std::string> result = generateParentheses(3);
         cout << "generateParentheses: " << endl;
-        ShowVector<string>(result);
+        ShowVector<std::string>(result);
 
         result = betterGenerateParentheses(4);
         cout << "betterGenerateParentheses: " << endl;
-        ShowVector<string>(result);
+        ShowVector<std::string>(result);
     }
 };
 
@@ -674,7 +676,7 @@ public:
 class ImplementStrStr {
 public:
 
-    int strStr(string haystack, string needle) {
+    int strStr(std::string haystack, std::string needle) {
         if (needle == "")
             return 0;
         int i = 0, j = 0;
@@ -688,7 +690,7 @@ public:
         return -1;
     }
 
-    int strStrKMP(string haystack, string needle) {
+    int strStrKMP(std::string haystack, std::string needle) {
         int m = int(haystack.length()), n = int(needle.length());
         if (!n)
             return 0;
@@ -712,7 +714,7 @@ public:
 
     // 计算kmp数组
 
-    vector<int> kmpProcess(string& needle) {
+    vector<int> kmpProcess(std::string& needle) {
         int n = needle.length();
         vector<int> lps(n, 0);
         for (int i = 1, len = 0; i < n;) { // 从前向后数, 每个字符串的最大前缀后缀公共字串的长度
@@ -727,8 +729,8 @@ public:
     }
 
     void Test() {
-        string str1 = "adbac";
-        string str2 = "bac";
+        std::string str1 = "adbac";
+        std::string str2 = "bac";
 
         cout << "strStr: " << strStr(str1, str2) << endl;
         cout << "strStrKMP: " << strStrKMP(str1, str2) << endl;
@@ -740,7 +742,7 @@ public:
 // Topics: string, hash table, two pointers
 
 /*
- * You are given a string, s, and a list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.
+ * You are given a string, s, and a std::list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.
  * 
  * Example 1:
  * Input:
@@ -760,24 +762,24 @@ public:
 class SubstringaWithConcatenationAllWords {
 public:
 
-    vector<int> findSubstring(string s, vector<string>& words) {
+    vector<int> findSubstring(std::string s, vector<std::string>& words) {
         vector<int> indexes;
         int n = s.length(), num = words.size();
         if (n <= 0 || num <= 0)
             return indexes;
         int len = words[0].length();
-        unordered_map<string, int> counts;
-        for (string word : words)
+        unordered_map<std::string, int> counts;
+        for (std::string word : words)
             counts[word]++;
 
 
         // 从头往后, 依次遍历去头字符
         for (int i = 0; i < n - num * len + 1; i++) {
-            unordered_map<string, int> seen;
+            unordered_map<std::string, int> seen;
             int j = 0;
             for (; j < num; j++) {
                 // 从去头字符串中, 依次去len长度的字串, 如果 words 中的单词长度不固定, 那么此题复杂度飙升
-                string word = s.substr(i + j * len, len);
+                std::string word = s.substr(i + j * len, len);
                 if (counts.find(word) != counts.end()) {
                     seen[word]++;
 
@@ -795,9 +797,9 @@ public:
     }
 
     void Test() {
-        string str = "goodfoodfoodgoodfood";
-        string wordsArr[] = {"good", "food", "food"};
-        vector<string> words(wordsArr, wordsArr + sizeof (wordsArr) / sizeof (string));
+        std::string str = "goodfoodfoodgoodfood";
+        std::string wordsArr[] = {"good", "food", "food"};
+        vector<std::string> words(wordsArr, wordsArr + sizeof (wordsArr) / sizeof (std::string));
         cout << "findSubstring: " << endl;
         vector<int> result = findSubstring(str, words);
         ShowVector<int>(result);
@@ -826,7 +828,7 @@ public:
 class LongestValidParentheses {
 public:
 
-    int longestValidParentheses(string s) {
+    int longestValidParentheses(std::string s) {
         stack<int> stk;
         stk.push(-1);
         stk.push(0);
@@ -847,7 +849,7 @@ public:
     // 此题中，如果一个字串是最长的合法串，那么它一定能由另一个子串构造。
     // 此局部最长的合法串与此合法串之前最长的合法串组合, 组成最长字串
     // 递推, 当当前字串为整个字符串时, 就得到最终的最长合法字串
-    int longestValidParenthesesDP(string s) {
+    int longestValidParenthesesDP(std::string s) {
         vector<int> vec(s.length(), 0);
         int open = 0;
         int max = 0;
@@ -868,7 +870,7 @@ public:
     }
 
     void Test() {
-        string str = "((()(())(((";
+        std::string str = "((()(())(((";
         cout << "longestValidParentheses: " << longestValidParentheses(str) << endl;
         cout << "longestValidParenthesesDP: " << longestValidParenthesesDP(str) << endl;
     }

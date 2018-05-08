@@ -486,7 +486,7 @@ public:
 
     int threeSumClosest(vector<int>& nums, int target) {
         if (nums.size() <= 3) {
-            return accumulate(nums.begin(), nums.end(), 0);
+            return std::accumulate(nums.begin(), nums.end(), 0);
         }
         std::sort(nums.begin(), nums.end());
 
@@ -637,26 +637,26 @@ public:
 
     vector<vector<int> > FourSum(vector<int> & nums, int target) {
         vector<vector<int> > vecRes;
-        list<list<int> > listRes = KSum(nums, target, 4);
-        for (list<list<int> >::iterator iter = listRes.begin(); iter != listRes.end(); iter++) {
+        std::list<std::list<int> > listRes = KSum(nums, target, 4);
+        for (std::list<std::list<int> >::iterator iter = listRes.begin(); iter != listRes.end(); iter++) {
             vector<int> tmp(iter->begin(), iter->end());
             vecRes.push_back(tmp);
         }
         return vecRes;
     }
 
-    list<list<int> > KSum(vector<int> & nums, int target, int k) {
-        list<list<int> > res;
+    std::list<std::list<int> > KSum(vector<int> & nums, int target, int k) {
+        std::list<std::list<int> > res;
         if (nums.empty() || (int) nums.size() < k || k < 2)
             return res;
         std::sort(nums.begin(), nums.end());
-        list<int> prePath;
+        std::list<int> prePath;
         kSumImpl(nums, target, k, 0, res, prePath);
         return res;
 
     }
 
-    void kSumImpl(vector<int> & nums, int target, int k, int start, list<list<int> > &result, list<int> & prePath) {
+    void kSumImpl(vector<int> & nums, int target, int k, int start, std::list<std::list<int> > &result, std::list<int> & prePath) {
         if (nums[start] * k > target || nums[nums.size() - 1] * k < target)
             return;
         if (2 == k) {
@@ -670,7 +670,7 @@ public:
                     right--;
                 else {
                     // 是经过排序后, 从左往右查找的序列, insert 和 push_back 一定是有序的
-                    list<int> tempList;
+                    std::list<int> tempList;
                     tempList.insert(tempList.end(), prePath.begin(), prePath.end());
                     tempList.push_back(nums[left]);
                     tempList.push_back(nums[right]);
@@ -694,7 +694,7 @@ public:
                     continue;
                 if (nums[i] * k == target) { // 多个数相同的和等于目标
                     if (nums[i + k - 1] == nums[i]) {
-                        list<int> tempList;
+                        std::list<int> tempList;
                         tempList.insert(tempList.end(), prePath.begin(), prePath.end());
                         tempList.insert(tempList.end(), nums.begin() + i, nums.begin() + i + k);
                         result.push_back(tempList);

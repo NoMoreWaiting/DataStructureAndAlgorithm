@@ -210,7 +210,7 @@ public:
     }
 
     void Test() {
-        string str = "12";
+        std::string str = "12";
         ListNode* head = string2ListNode(str);
         head = removeNthFromEnd2LevelPointer(head, 1);
         cout << "removeNthFromEnd: " << endl;
@@ -262,8 +262,8 @@ public:
     }
 
     void Test() {
-        string str1 = "1245";
-        string str2 = "3589";
+        std::string str1 = "1245";
+        std::string str2 = "3589";
 
         ListNode * l1 = string2ListNode(str1);
         ListNode * l2 = string2ListNode(str2);
@@ -352,9 +352,9 @@ public:
     }
 
     void Test() {
-        string str1 = "1356";
-        string str2 = "02469";
-        string str3 = "1289";
+        std::string str1 = "1356";
+        std::string str2 = "02469";
+        std::string str3 = "1289";
         vector<ListNode*> lists;
         lists.push_back(string2ListNode(str1));
         lists.push_back(string2ListNode(str2));
@@ -423,7 +423,7 @@ public:
     }
 
     void Test() {
-        string str = "12345";
+        std::string str = "12345";
         ListNode * node = string2ListNode(str);
         node = swapPairs(node);
         cout << "swapPairs: ";
@@ -517,7 +517,7 @@ public:
     }
 
     void Test() {
-        string str = "1234567890";
+        std::string str = "1234567890";
         ListNode * head = string2ListNode(str);
         head = reverseKGroup(head, 4);
         cout << "reverseKGroup: ";

@@ -19,23 +19,16 @@
 #include <vector>
 
 
-using std::cout;
-using std::endl;
-using std::string;
-using std::vector;
-
-
-
 // 打印数组元素
 
 void ShowArr(const int arr[], int len) {
     for (int i = 0; i < len; i++) {
         if (0 != i) {
-            cout << ", ";
+            std::cout << ", ";
         }
-        cout << arr[i];
+        std::cout << arr[i];
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 
@@ -43,14 +36,14 @@ void ShowArr(const int arr[], int len) {
 // 打印vector中元素的值
 
 template <typename T>
-void ShowVector(vector<T> & vec) {
+void ShowVector(std::vector<T> & vec) {
     for (int i = 0; i < int(vec.size()); i++) {
         if (0 != i) {
-            cout << ", ";
+            std::cout << ", ";
         }
-        cout << vec[i];
+        std::cout << vec[i];
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 
@@ -79,7 +72,7 @@ void Swap(T &a, T&b) {
 // 将src中的值拷入dest从first开始的位置
 
 template<typename T>
-void copyVector(vector<T> & dest, vector<T> & src, int len, int first) {
+void copyVector(std::vector<T> & dest, std::vector<T> & src, int len, int first) {
     for (int i = 0, j = first; i < len; i++, j++) {
         dest[j] = src[i];
     }
@@ -100,7 +93,7 @@ struct ListNode {
     }
 };
 
-ListNode* string2ListNode(string& str) {
+ListNode* string2ListNode(std::string& str) {
     ListNode*head = new ListNode(0);
     ListNode * next = head;
     for (int i = 0; i < (int) str.length(); i++) {
@@ -115,10 +108,10 @@ ListNode* string2ListNode(string& str) {
 
 void ShowListNode(ListNode* head) {
     while (NULL != head) {
-        cout << head->val << " ";
+        std::cout << head->val << " ";
         head = head->next;
     }
-    cout << " end" << endl;
+    std::cout << " end" << std::endl;
 }
 
 #endif /* COMMON_H */

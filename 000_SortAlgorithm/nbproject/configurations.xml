@@ -42,8 +42,12 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <stripSymbols>true</stripSymbols>
+          <standard>10</standard>
+        </cTool>
         <ccTool>
-          <standard>8</standard>
+          <standard>11</standard>
           <commandLine>-g3 -O0 -std=c++11 -Wall -Werror</commandLine>
         </ccTool>
       </compileType>
