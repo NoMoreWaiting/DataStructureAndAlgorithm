@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(platform x64)
 
 #2.project name, 指定项目的名称, 一般和项目的文件夹名称对应
-PROJECT(000_SortAlgorithm)
+PROJECT(SortAlgorithm)
 
 #3.head file path, 头文件目录
 INCLUDE_DIRECTORIES(
