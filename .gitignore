@@ -1,7 +1,17 @@
 # 忽略所有文件夹下 build 目录及其子文件
 build
 dist
-# 删除之后需要手动写Makefile, 暂不删除
-# nbproject
 
 .dep.inc
+# 删除之后需要手动写Makefile, 暂不删除
+# nbproject
+#
+#20180619 更新, 使用 CMakeLists.txt 构建项目
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+compile_commands.json
+Makefile
+nbproject
+
+
