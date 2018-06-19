@@ -15,5 +15,5 @@ Makefile
 nbproject
 
 # 忽略生成的可执行文件, 以后需要手动添加新项目
-./000_SortAlgorithm/Algorithm
+/000_SortAlgorithm/Algorithm
 
