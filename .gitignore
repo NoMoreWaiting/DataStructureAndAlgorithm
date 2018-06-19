@@ -6,7 +6,7 @@ dist
 # 删除之后需要手动写Makefile, 暂不删除
 # nbproject
 #
-#20180619 更新, 使用 CMakeLists.txt 构建项目
+# 20180619 更新, 使用 CMakeLists.txt 构建项目
 CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
@@ -14,4 +14,6 @@ compile_commands.json
 Makefile
 nbproject
 
+# 忽略生成的可执行文件, 以后需要手动添加新项目
+./000_SortAlgorithm/000_SortAlgorithm
 
