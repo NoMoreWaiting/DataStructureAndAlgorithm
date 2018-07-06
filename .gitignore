@@ -3,6 +3,7 @@ build
 dist
 .idea
 venv
+__pycache__
 
 .dep.inc
 # 删除之后需要手动写Makefile, 暂不删除
