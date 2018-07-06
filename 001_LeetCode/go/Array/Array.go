@@ -43,6 +43,7 @@ func twoSumHashMap(nums []int, target int) []int {
 }
 
 func twoSumTest() {
+	fmt.Println("1. Two Sum")
 	nums := []int{3, 2, 4}
 	target := 6
 	res := twoSumDFS(nums, target)
@@ -50,6 +51,7 @@ func twoSumTest() {
 
 	res = twoSumHashMap(nums, target)
 	fmt.Println("twoSumHashMap: ", res)
+	fmt.Println()
 }
 
 // 39. Combination Sum
@@ -91,9 +93,11 @@ func combination(res *[][]int, path []int, candidates []int, target int, begin i
 }
 
 func combinationSumTest() {
+	fmt.Println("39. Combination Sum")
 	candidates := []int{2, 3, 5}
 	result := combinationSum(candidates, 8)
 	fmt.Println("combinationSum: ", "candidates: ", candidates, "result: ", result)
+	fmt.Println()
 }
 
 func TestLeetCodeArray() {
