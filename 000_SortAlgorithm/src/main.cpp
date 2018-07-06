@@ -29,13 +29,6 @@
 #include "RadixSort.hpp"
 #include "BucketSort.hpp"
 
-#include "LeetCodeArray.hpp"
-#include "LeetCodeList.hpp"
-#include "LeetCodeMath.hpp"
-#include "LeetCodeString.hpp"
-
-#include "ClassicAlgorithmAnalysis.hpp"
-
 
 using namespace std;
 
@@ -105,152 +98,6 @@ void SortAlgorithm() {
 }
 
 
-
-// array 
-
-void LeetCodeArray() {
-
-    TwoSum twoSum;
-    twoSum.Test();
-
-    MedianOfTwoSortedArrays medianOfTwoSortedArrays;
-    medianOfTwoSortedArrays.Test();
-
-    PascalTriangle pascalTriangle;
-    pascalTriangle.Test();
-
-    ContainerWithMostWater containerWithMostWater;
-    containerWithMostWater.Test();
-
-    ThreeSum threeSum;
-    threeSum.Test();
-
-    ThreeSumClosest threeSumClosest;
-    threeSumClosest.Test();
-
-    MajorityElement majorityElement;
-    majorityElement.Test();
-
-    ArrayPartition arrayPartition;
-    arrayPartition.Test();
-
-    FourSumSolution fourSumSolution;
-    fourSumSolution.Test();
-
-    RemoveDuplicatesFromSortedArray removeDuplicatesFromSortedArray;
-    removeDuplicatesFromSortedArray.Test();
-
-    RemoveElement removeElement;
-    removeElement.Test();
-
-    NextPermutation nextPermutation;
-    nextPermutation.Test();
-
-    SearchInRotatedSortedArray searchInRotatedSortedArray;
-    searchInRotatedSortedArray.Test();
-
-    SearchForARange searchForARange;
-    searchForARange.Test();
-
-    SearchInsertPosition searchInsertPosition;
-    searchInsertPosition.Test();
-}
-
-// list
-
-void LeetCodeList() {
-    AddTwoNumbers addTwoNumbers;
-    addTwoNumbers.Test();
-
-    RemoveNthNodeFromEnd removeNthNodeFromEnd;
-    removeNthNodeFromEnd.Test();
-
-    MergeTwoSortedLists mergeTwoSortedLists;
-    mergeTwoSortedLists.Test();
-
-    MergeKSortedLists mergeKSortedLists;
-    mergeKSortedLists.Test();
-
-    SwapNodesInPairs swapNodesInPairs;
-    swapNodesInPairs.Test();
-
-    ReverseNodesInkGroup reverseNodesInkGroup;
-    reverseNodesInkGroup.Test();
-}
-
-// math
-
-void LeetCodeMath() {
-    ReverseInteger reverseInteger;
-    reverseInteger.Test();
-
-    PalindromeNumber palindromeNumber;
-    palindromeNumber.Test();
-
-    Integer2Roman integer2Roman;
-    integer2Roman.Test();
-
-    Roman2Integer roman2Integer;
-    roman2Integer.Test();
-
-    DivideTwoIntegers divideTwoIntegers;
-    divideTwoIntegers.Test();
-}
-
-// string
-
-void LeetCodeString() {
-    LongestSubstring longestSubstring;
-    longestSubstring.Test();
-
-    LongestPalindromicSubstring longestPalindromicSubstring;
-    longestPalindromicSubstring.Test();
-
-    ZigZagConversion zigZagConversion;
-    zigZagConversion.Test();
-
-    String2Integer string2Integer;
-    string2Integer.Test();
-
-    RegularExpressionMatching regularExpressionMatching;
-    regularExpressionMatching.Test();
-
-    LongestCommonPrefix longestCommonPrefix;
-    longestCommonPrefix.Test();
-
-    LetterCombinationsOfPhoneNumber letterCombinationsOfPhoneNumber;
-    letterCombinationsOfPhoneNumber.Test();
-
-    ValidParentheses validParentheses;
-    validParentheses.Test();
-
-    GenerateParentheses generateParentheses;
-    generateParentheses.Test();
-
-    ImplementStrStr implementStrStr;
-    implementStrStr.Test();
-
-    SubstringaWithConcatenationAllWords substringaWithConcatenationAllWords;
-    substringaWithConcatenationAllWords.Test();
-
-    LongestValidParentheses longestValidParentheses;
-    longestValidParentheses.Test();
-
-}
-
-void LeetCode() {
-    LeetCodeArray();
-    //    LeetCodeList();
-    //    LeetCodeMath();
-    //    LeetCodeString();
-}
-
-void ClassicAlgorithmAnalysis() {
-    FullRangeAlgorithm fullRangeAlgorithm;
-    fullRangeAlgorithm.Test();
-
-}
-
 /**
  * main 函数
  * para:    argc
@@ -259,10 +106,8 @@ void ClassicAlgorithmAnalysis() {
  */
 int main(int argc, char** argv) {
 
-    //    SortAlgorithm();
-    LeetCode();
-    //    ClassicAlgorithmAnalysis();
-
+    SortAlgorithm();
+    
     return 0;
 }
 
